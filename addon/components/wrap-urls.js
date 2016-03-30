@@ -16,18 +16,28 @@ const WrapUrlsComponent = Component.extend({
     let lastIndex = 0;
     let parts = [];
     let match;
+    let string;
 
     while ((match = WrapUrlsComponent.regex.exec(text))) {
       let [ url ] = match;
       let { index: start } = match;
 
-      parts.push({ text: text.slice(lastIndex, start) });
+      string = text.slice(lastIndex, start);
+
+      if (string) {
+        parts.push({ text: string });
+      }
+
       parts.push({ url });
 
       lastIndex = start + url.length;
     }
 
-    parts.push({ text: text.slice(lastIndex) });
+    string = text.slice(lastIndex);
+
+    if (string) {
+      parts.push({ text: string });
+    }
 
     return parts;
   }

@@ -89,7 +89,7 @@ test('custom component', function(assert) {
       component=(component 'x-foo' target="foo")~}}
   `);
 
-  let expecting = 'visit <div target="foo" class="ember-view">http://my</div> <div target="foo" class="ember-view">http://link</div><!---->';
+  let expecting = 'visit <div target="foo" class="ember-view">http://my</div> <div target="foo" class="ember-view">http://link</div>';
 
   assert.equal(this.$().html(), expecting,
     'can render each URL using a custom component');
@@ -100,14 +100,40 @@ test('custom component', function(assert) {
 test('custom pattern', function(assert) {
   assert.expect(1);
 
+  const originalRegex = WrapUrlsComponent.regex;
+
   WrapUrlsComponent.reopenClass({
     regex: /mailto:(.*)?/g
   });
 
   this.render(hbs`{{wrap-urls text='email me mailto:fred@smith.com'}}`);
 
-  let expecting = 'email me <span class="ember-view url">mailto:fred@smith.com</span><!---->';
+  let expecting = 'email me <span class="ember-view url">mailto:fred@smith.com</span>';
 
   assert.equal(this.$().html(), expecting,
     'its possible to customise the URL pattern');
+
+  WrapUrlsComponent.regex = originalRegex;
+});
+
+
+
+test('re-computing', function(assert) {
+  assert.expect(2);
+
+  this.set('text', 'http://foo.com');
+
+  this.render(hbs`{{wrap-urls text=text}}`);
+
+  let expecting = '<span class="ember-view url">http://foo.com</span>';
+
+  assert.equal(this.$().html(), expecting,
+    'precondition');
+
+  this.set('text', 'http://bar.com');
+
+  expecting = '<span class="ember-view url">http://bar.com</span>';
+
+  assert.equal(this.$().html(), expecting,
+    'updating the text will render updated URLs');
 });
