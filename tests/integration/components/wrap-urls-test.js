@@ -67,7 +67,7 @@ close: <a href="http://foo.com" class="ember-view hyperlink">http://foo.com</a> 
 `;
 
   assert.equal(this.$().html(), expecting,
-    'replaces urls with hyperlinks by defaults');
+    'replaces urls with hyperlinks');
 });
 
 
