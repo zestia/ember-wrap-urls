@@ -1,7 +1,7 @@
 {
   "name": "ember-wrap-urls",
   "version": "0.0.2",
-  "description": "Automatically turns URLs into Hyperlinks in UGC",
+  "description": "Automatically turns URLs into Hyperlinks for user-generated-content",
   "directories": {
     "doc": "doc",
     "test": "tests"
