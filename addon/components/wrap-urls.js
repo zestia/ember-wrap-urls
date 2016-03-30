@@ -12,7 +12,10 @@ const WrapUrlsComponent = Component.extend({
     this.set('urlComponent', this.getAttr('component') || 'wrap-urls/url');
   },
 
-  _textToParts(text = '') {
+  _textToParts(text) {
+    text = text || '';
+    text = text.toString();
+
     let lastIndex = 0;
     let parts = [];
     let match;

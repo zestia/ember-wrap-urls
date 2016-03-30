@@ -1,6 +1,10 @@
 import { moduleForComponent, test } from 'ember-qunit';
+import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
 import { text } from 'dummy/utils/samples';
+import { helper } from 'ember-helper';
+import { htmlSafe } from 'ember-string';
+const { escapeExpression } = Ember.Handlebars.Utils;
 import Component from 'ember-component';
 import WrapUrlsComponent from 'ember-wrap-urls/components/wrap-urls';
 
@@ -23,6 +27,36 @@ test('it renders', function(assert) {
   assert.equal(this.$().html(), '<!---->',
     'no block mode');
 });
+
+
+test('null text', function(assert) {
+  assert.expect(1);
+
+  this.set('text', null);
+
+  this.render(hbs`{{wrap-urls text=text}}`);
+
+  assert.equal(this.$().html(), '<!---->',
+    'does not blow up');
+});
+
+
+test('safe strings', function(assert) {
+  assert.expect(1);
+
+  this.register('helper:truncate', helper(function(args) {
+    let [ string, length ] = args;
+    return htmlSafe(escapeExpression(string.slice(0, length)));
+  }));
+
+  this.render(hbs`{{wrap-urls text=(truncate 'visit http://example.com' 16)}}`);
+
+  let expecting = 'visit <span class="ember-view url">http://exa</span>';
+
+  assert.equal(this.$().html(), expecting,
+    'can handle safe strings');
+});
+
 
 
 test('it wraps urls', function(assert) {
