@@ -17,10 +17,10 @@ Given the following:
 {{wrap-urls text='Check out my link: http://example.com'}}
 ```
 
-Which will render:
+Will render:
 
 ```html
-Check out my link <a href="http://example.com">http://example.com</a>
+Check out my link <span class="url">http://example.com</span>
 ```
 
 ### Built in components
@@ -30,34 +30,27 @@ This addon comes with two extra components:
 * `wrap-urls/url`
 * `wrap-urls/hyperlink`
 
-By default, URLs will be rendered using `wrap-urls/hyperlink`
+By default, URLs will be rendered using `wrap-urls/url`
 
-To send in extra attributes you can do:
-
-```handlebars
-{{wrap-urls
-  text=text
-  component=(component 'wrap-urls/hyperlink' target="_blank")}}
-```
-
-Optionally if you just want to wrap the URLs:
+You can set `component` to change which component is used to render each URL:
 
 ```handlebars
-{{wrap-urls text='Visit http://example.com' component='wrap-urls/url'}}
+{{wrap-urls text='Visit http://example.com' component='wrap-urls/hyperlink'}}
 ```
 
 Will result in:
 
 ```html
-Visit <span class="url">http://example.com</span>
+Visit <a class="hyperlink" href="http://example.com">http://example.com</a>
 ```
 
-Which can be useful for styling...
+To send in your own attributes:
 
-```css
-.url { word-break: break-all; }
+```handlebars
+{{wrap-urls
+  text='Visit http://example.com'
+  component=(component 'wrap-urls/hyperlink' target="_blank")}}
 ```
-
 
 ### Customising
 

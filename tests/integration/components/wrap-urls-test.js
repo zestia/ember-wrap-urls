@@ -24,12 +24,36 @@ test('it renders', function(assert) {
 });
 
 
-test('urls to hyperlinks', function(assert) {
+test('it wraps urls', function(assert) {
   assert.expect(1);
 
   this.set('text', text);
 
   this.render(hbs`{{wrap-urls text=text}}`);
+
+  let expecting = `
+http: <span class="ember-view url">http://foo.com</span>
+https: <span class="ember-view url">https://bar.com</span>
+ftp: <span class="ember-view url">ftp://baz.com</span>
+file: <span class="ember-view url">file://qux.jpg</span>
+emoji: 💩 <span class="ember-view url">http://norf.com</span>
+subdomain: <span class="ember-view url">http://foo.bar.com</span>
+path: <span class="ember-view url">http://foo.com/bar/baz</span>
+close: <span class="ember-view url">http://foo.com</span> <span class="ember-view url">https://bar.com</span>
+`;
+
+  assert.equal(this.$().html(), expecting,
+    'wraps urls with a span');
+});
+
+
+
+test('it wraps urls as hyperlinks', function(assert) {
+  assert.expect(1);
+
+  this.set('text', text);
+
+  this.render(hbs`{{wrap-urls text=text component='wrap-urls/hyperlink'}}`);
 
   let expecting = `
 http: <a href="http://foo.com" class="ember-view hyperlink">http://foo.com</a>
@@ -47,12 +71,13 @@ close: <a href="http://foo.com" class="ember-view hyperlink">http://foo.com</a> 
 });
 
 
+
 test('custom component', function(assert) {
   assert.expect(1);
 
   const XFooComponent = Component.extend({
     layout: hbs`{{attrs.url}}`,
-    attributeBindings: ['target']
+    attributeBindings: ['id', 'target']
   });
 
   this.register('component:x-foo', XFooComponent);
@@ -63,8 +88,8 @@ test('custom component', function(assert) {
       component=(component 'x-foo' target="foo")~}}
   `);
 
-  let expecting = 'visit <div id="[^"]+" target="foo" class="ember-view">http://my</div> <div id="[^"]+" target="foo" class="ember-view">http://link</div><!---->';
+  let expecting = 'visit <div target="foo" class="ember-view">http://my</div> <div target="foo" class="ember-view">http://link</div><!---->';
 
-  assert.ok(this.$().html().match(expecting),
+  assert.equal(this.$().html(), expecting,
     'can render each URL using a custom component');
 });
