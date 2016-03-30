@@ -60,3 +60,12 @@ Specify your own component to customise how URLs are rendered:
 {{wrap-urls text=text component=(component 'my-tooltip')}}
 ```
 
+You change the pattern used to find hyperlinks:
+
+```javascript
+import WrapUrlsComponent from 'ember-wrap-urls/components/wrap-urls';
+
+WrapUrlsComponent.reopenClass({
+  regex: /yourRegexGoesHere/g
+});
+```
