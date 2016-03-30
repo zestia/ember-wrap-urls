@@ -14,6 +14,7 @@ moduleForComponent('wrap-urls', 'Integration | Component | wrap urls', {
 });
 
 
+
 test('it renders', function(assert) {
   assert.expect(2);
 
@@ -29,6 +30,18 @@ test('it renders', function(assert) {
 });
 
 
+
+test('escaping', function(assert) {
+  assert.expect(1);
+
+  this.render(hbs`{{wrap-urls text='<script>'}}`);
+
+  assert.equal(this.$().html(), '&lt;script&gt;',
+    'text is escaped');
+});
+
+
+
 test('null text', function(assert) {
   assert.expect(1);
 
@@ -39,6 +52,7 @@ test('null text', function(assert) {
   assert.equal(this.$().html(), '<!---->',
     'does not blow up');
 });
+
 
 
 test('safe strings', function(assert) {
