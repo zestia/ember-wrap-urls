@@ -1,7 +1,7 @@
 {
   "name": "ember-wrap-urls",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.1",
+  "description": "Automatically turns URLs into Hyperlinks in UGC",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,16 +11,20 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amk221/ember-wrap-urls.git"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Andrew Kirwin",
   "license": "MIT",
   "devDependencies": {
+    "babel-plugin-transform-es2015-sticky-regex": "^6.5.0",
     "broccoli-asset-rev": "^2.2.0",
     "ember-ajax": "0.7.1",
-    "ember-cli": "2.4.2",
+    "ember-cli": "^2.4.2",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-dependency-checker": "^1.2.0",
     "ember-cli-htmlbars": "^1.0.1",
@@ -28,24 +32,34 @@
     "ember-cli-inject-live-reload": "^1.3.1",
     "ember-cli-qunit": "^1.2.1",
     "ember-cli-release": "0.2.8",
-    "ember-cli-sri": "^2.1.0",
+    "ember-cli-sri": "^2.0.0",
     "ember-cli-uglify": "^1.2.0",
-    "ember-data": "^2.4.0",
+    "ember-data": "^2.3.0",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-export-application-global": "^1.0.4",
     "ember-load-initializers": "^0.5.0",
     "ember-resolver": "^2.0.3",
-    "ember-try": "^0.1.2",
+    "ember-try": "^0.2.0",
     "loader.js": "^4.0.0"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "url",
+    "hyperlink",
+    "pattern",
+    "ugc",
+    "user generated content"
   ],
   "dependencies": {
-    "ember-cli-babel": "^5.1.5"
+    "ember-cli-babel": "^5.1.6",
+    "ember-cli-htmlbars": "^1.0.2"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/amk221/ember-wrap-urls/issues"
+  },
+  "homepage": "https://github.com/amk221/ember-wrap-urls"
 }

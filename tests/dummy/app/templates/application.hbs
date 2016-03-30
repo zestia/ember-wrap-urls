@@ -1,3 +1,13 @@
-<h2 id="title">Welcome to Ember</h2>
+<h1>ember-wrap-urls</h1>
 
-{{outlet}}
+<div class="ugc">
+  {{wrap-urls
+    text=text
+    component=(component 'wrap-urls/hyperlink' target="_blank")}}
+
+  {{wrap-urls
+    text=text
+    component='wrap-urls/url'}}
+</div>
+
+{{!outlet}}

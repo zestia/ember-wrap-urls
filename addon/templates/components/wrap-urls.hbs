@@ -1,0 +1,7 @@
+{{#each parts as |part|}}
+  {{#if part.url}}
+    {{~component urlComponent url=part.url~}}
+  {{else}}
+    {{~part.text~}}
+  {{/if}}
+{{/each}}
