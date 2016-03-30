@@ -63,8 +63,8 @@ test('custom component', function(assert) {
       component=(component 'x-foo' target="foo")~}}
   `);
 
-  let expecting = 'visit <div id="ember278" target="foo" class="ember-view">http://my</div> <div id="ember281" target="foo" class="ember-view">http://link</div><!---->';
+  let expecting = 'visit <div id="[^"]+" target="foo" class="ember-view">http://my</div> <div id="[^"]+" target="foo" class="ember-view">http://link</div><!---->';
 
-  assert.equal(this.$().html(), expecting,
+  assert.ok(this.$().html().match(expecting),
     'can render each URL using a custom component');
 });
