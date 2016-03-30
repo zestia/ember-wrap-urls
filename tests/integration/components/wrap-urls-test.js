@@ -2,6 +2,7 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import { text } from 'dummy/utils/samples';
 import Component from 'ember-component';
+import WrapUrlsComponent from 'ember-wrap-urls/components/wrap-urls';
 
 
 moduleForComponent('wrap-urls', 'Integration | Component | wrap urls', {
@@ -92,4 +93,21 @@ test('custom component', function(assert) {
 
   assert.equal(this.$().html(), expecting,
     'can render each URL using a custom component');
+});
+
+
+
+test('custom pattern', function(assert) {
+  assert.expect(1);
+
+  WrapUrlsComponent.reopenClass({
+    regex: /mailto:(.*)?/g
+  });
+
+  this.render(hbs`{{wrap-urls text='email me mailto:fred@smith.com'}}`);
+
+  let expecting = 'email me <span class="ember-view url">mailto:fred@smith.com</span><!---->';
+
+  assert.equal(this.$().html(), expecting,
+    'its possible to customise the URL pattern');
 });

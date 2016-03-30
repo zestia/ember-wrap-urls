@@ -21,6 +21,8 @@ const WrapUrlsComponent = Component.extend({
       let [ url ] = match;
       let { index: start } = match;
 
+      console.log(match);
+
       parts.push({ text: text.slice(lastIndex, start) });
       parts.push({ url });
 
