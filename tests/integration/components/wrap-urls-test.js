@@ -65,7 +65,7 @@ test('safe strings', function(assert) {
 
   this.render(hbs`{{wrap-urls text=(truncate 'visit http://example.com' 16)}}`);
 
-  let expecting = 'visit <span class="ember-view url">http://exa</span>';
+  let expecting = 'visit <span class="ember-view wrapped-url">http://exa</span>';
 
   assert.equal(this.$().html(), expecting,
     'can handle safe strings');
@@ -81,14 +81,14 @@ test('it wraps urls', function(assert) {
   this.render(hbs`{{wrap-urls text=text}}`);
 
   let expecting = `
-http: <span class="ember-view url">http://foo.com</span>
-https: <span class="ember-view url">https://bar.com</span>
-ftp: <span class="ember-view url">ftp://baz.com</span>
-file: <span class="ember-view url">file://qux.jpg</span>
-emoji: 💩 <span class="ember-view url">http://norf.com</span>
-subdomain: <span class="ember-view url">http://foo.bar.com</span>
-path: <span class="ember-view url">http://foo.com/bar/baz</span>
-close: <span class="ember-view url">http://foo.com</span> <span class="ember-view url">https://bar.com</span>
+http: <span class="ember-view wrapped-url">http://foo.com</span>
+https: <span class="ember-view wrapped-url">https://bar.com</span>
+ftp: <span class="ember-view wrapped-url">ftp://baz.com</span>
+file: <span class="ember-view wrapped-url">file://qux.jpg</span>
+emoji: 💩 <span class="ember-view wrapped-url">http://norf.com</span>
+subdomain: <span class="ember-view wrapped-url">http://foo.bar.com</span>
+path: <span class="ember-view wrapped-url">http://foo.com/bar/baz</span>
+close: <span class="ember-view wrapped-url">http://foo.com</span> <span class="ember-view wrapped-url">https://bar.com</span>
 `;
 
   assert.equal(this.$().html(), expecting,
@@ -97,26 +97,26 @@ close: <span class="ember-view url">http://foo.com</span> <span class="ember-vie
 
 
 
-test('it wraps urls as hyperlinks', function(assert) {
+test('it wraps urls as links', function(assert) {
   assert.expect(1);
 
   this.set('text', text);
 
-  this.render(hbs`{{wrap-urls text=text component='wrap-urls/hyperlink'}}`);
+  this.render(hbs`{{wrap-urls text=text component='wrap-urls/link'}}`);
 
   let expecting = `
-http: <a href="http://foo.com" class="ember-view hyperlink">http://foo.com</a>
-https: <a href="https://bar.com" class="ember-view hyperlink">https://bar.com</a>
-ftp: <a href="ftp://baz.com" class="ember-view hyperlink">ftp://baz.com</a>
-file: <a href="file://qux.jpg" class="ember-view hyperlink">file://qux.jpg</a>
-emoji: 💩 <a href="http://norf.com" class="ember-view hyperlink">http://norf.com</a>
-subdomain: <a href="http://foo.bar.com" class="ember-view hyperlink">http://foo.bar.com</a>
-path: <a href="http://foo.com/bar/baz" class="ember-view hyperlink">http://foo.com/bar/baz</a>
-close: <a href="http://foo.com" class="ember-view hyperlink">http://foo.com</a> <a href="https://bar.com" class="ember-view hyperlink">https://bar.com</a>
+http: <a href="http://foo.com" class="ember-view wrapped-url-link">http://foo.com</a>
+https: <a href="https://bar.com" class="ember-view wrapped-url-link">https://bar.com</a>
+ftp: <a href="ftp://baz.com" class="ember-view wrapped-url-link">ftp://baz.com</a>
+file: <a href="file://qux.jpg" class="ember-view wrapped-url-link">file://qux.jpg</a>
+emoji: 💩 <a href="http://norf.com" class="ember-view wrapped-url-link">http://norf.com</a>
+subdomain: <a href="http://foo.bar.com" class="ember-view wrapped-url-link">http://foo.bar.com</a>
+path: <a href="http://foo.com/bar/baz" class="ember-view wrapped-url-link">http://foo.com/bar/baz</a>
+close: <a href="http://foo.com" class="ember-view wrapped-url-link">http://foo.com</a> <a href="https://bar.com" class="ember-view wrapped-url-link">https://bar.com</a>
 `;
 
   assert.equal(this.$().html(), expecting,
-    'replaces urls with hyperlinks');
+    'replaces urls with links');
 });
 
 
@@ -156,7 +156,7 @@ test('custom pattern', function(assert) {
 
   this.render(hbs`{{wrap-urls text='email me mailto:fred@smith.com'}}`);
 
-  let expecting = 'email me <span class="ember-view url">mailto:fred@smith.com</span>';
+  let expecting = 'email me <span class="ember-view wrapped-url">mailto:fred@smith.com</span>';
 
   assert.equal(this.$().html(), expecting,
     'its possible to customise the URL pattern');
@@ -173,14 +173,14 @@ test('re-computing', function(assert) {
 
   this.render(hbs`{{wrap-urls text=text}}`);
 
-  let expecting = '<span class="ember-view url">http://foo.com</span>';
+  let expecting = '<span class="ember-view wrapped-url">http://foo.com</span>';
 
   assert.equal(this.$().html(), expecting,
     'precondition');
 
   this.set('text', 'http://bar.com');
 
-  expecting = '<span class="ember-view url">http://bar.com</span>';
+  expecting = '<span class="ember-view wrapped-url">http://bar.com</span>';
 
   assert.equal(this.$().html(), expecting,
     'updating the text will render updated URLs');

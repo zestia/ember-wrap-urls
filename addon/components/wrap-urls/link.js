@@ -5,7 +5,7 @@ export default Component.extend({
   layout: layout,
   tagName: 'a',
 
-  classNames: ['hyperlink'],
+  classNames: ['wrapped-url-link'],
 
   attributeBindings: [
     'url:href',

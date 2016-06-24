@@ -10,12 +10,12 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{wrap-urls/url url='http://example.com'}}`);
 
-  assert.equal(this.$('.url').length, 1,
+  assert.equal(this.$('.wrapped-url').length, 1,
     'renders a url with an appropriate class name');
 
-  assert.equal(this.$('.url').prop('tagName'), 'SPAN',
+  assert.equal(this.$('.wrapped-url').prop('tagName'), 'SPAN',
     'renders as an inline element');
 
-  assert.equal(this.$('.url').text(), 'http://example.com',
+  assert.equal(this.$('.wrapped-url').text(), 'http://example.com',
     'renders the url');
 });
