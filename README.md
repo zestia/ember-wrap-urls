@@ -20,7 +20,7 @@ Given the following:
 Will render:
 
 ```html
-Check out my link <span class="url">http://example.com</span>
+Check out my link <span class="wrapped-url">http://example.com</span>
 ```
 
 ### Built in components
@@ -28,20 +28,20 @@ Check out my link <span class="url">http://example.com</span>
 This addon comes with two extra components:
 
 * `wrap-urls/url`
-* `wrap-urls/hyperlink`
+* `wrap-urls/link`
 
 By default, URLs will be rendered using `wrap-urls/url`
 
 You can set `component` to change which component is used to render each URL:
 
 ```handlebars
-{{wrap-urls text='Visit http://example.com' component='wrap-urls/hyperlink'}}
+{{wrap-urls text='Visit http://example.com' component='wrap-urls/link'}}
 ```
 
 Will result in:
 
 ```html
-Visit <a class="hyperlink" href="http://example.com">http://example.com</a>
+Visit <a class="wrapped-url-link" href="http://example.com">http://example.com</a>
 ```
 
 To send in your own attributes:
@@ -49,7 +49,7 @@ To send in your own attributes:
 ```handlebars
 {{wrap-urls
   text='Visit http://example.com'
-  component=(component 'wrap-urls/hyperlink' target="_blank")}}
+  component=(component 'wrap-urls/link' target="_blank")}}
 ```
 
 ### Customising
