@@ -1,4 +1,4 @@
-# ember-wrap-urls
+# :link: ember-wrap-urls
 
 <a href="http://emberobserver.com/addons/ember-wrap-urls"><img src="http://emberobserver.com/badges/ember-wrap-urls.svg"></a> &nbsp; <a href="https://david-dm.org/amk221/ember-wrap-urls#badge-embed"><img src="https://david-dm.org/amk221/ember-wrap-urls.svg"></a> &nbsp; <a href="https://david-dm.org/amk221/ember-wrap-urls#dev-badge-embed"><img src="https://david-dm.org/amk221/ember-wrap-urls/dev-status.svg"></a> &nbsp; <a href="https://codeclimate.com/github/amk221/ember-wrap-urls"><img src="https://codeclimate.com/github/amk221/ember-wrap-urls/badges/gpa.svg" /></a> &nbsp; <a href="http://travis-ci.org/amk221/ember-wrap-urls"><img src="https://travis-ci.org/amk221/ember-wrap-urls.svg?branch=master"></a>
 
