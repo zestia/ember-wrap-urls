@@ -1,8 +1,10 @@
+/* eslint-disable no-cond-assign */
+
 import Component from 'ember-component';
 import layout from '../templates/components/wrap-urls';
 
 const WrapUrlsComponent = Component.extend({
-  layout: layout,
+  layout,
   tagName: '',
   parts: null,
 
@@ -16,14 +18,14 @@ const WrapUrlsComponent = Component.extend({
     text = text || '';
     text = text.toString();
 
+    const parts = [];
     let lastIndex = 0;
-    let parts = [];
     let match;
     let string;
 
-    while ((match = WrapUrlsComponent.regex.exec(text))) {
-      let [ url ] = match;
-      let { index: start } = match;
+    while (match = WrapUrlsComponent.regex.exec(text)) {
+      const [ url ] = match;
+      const { index: start } = match;
 
       string = text.slice(lastIndex, start);
 

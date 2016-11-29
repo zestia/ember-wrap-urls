@@ -1,7 +1,9 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('wrap-urls/link', 'Integration | Component | wrap urls/link', {
+moduleForComponent(
+  'wrap-urls/link',
+  'Integration | Component | wrap urls/link', {
   integration: true
 });
 
