@@ -1,6 +1,6 @@
 {
   "name": "ember-wrap-urls",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Automatically turns URLs into Hyperlinks for user-generated-content",
   "directories": {
     "doc": "doc",
