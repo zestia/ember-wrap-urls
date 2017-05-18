@@ -134,8 +134,8 @@ test('custom component', function(assert) {
   assert.expect(2);
 
   const XFooComponent = Component.extend({
-    layout: hbs`{{url}}`,
-    attributeBindings: ['target']
+    attributeBindings: ['target'],
+    layout: hbs`{{url}}`
   });
 
   this.register('component:x-foo', XFooComponent);
