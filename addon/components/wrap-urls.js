@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign */
 
-import Component from 'ember-component';
+import Component from '@ember/component';
 import layout from '../templates/components/wrap-urls';
 
 const WrapUrlsComponent = Component.extend({
@@ -49,7 +49,7 @@ const WrapUrlsComponent = Component.extend({
 });
 
 WrapUrlsComponent.reopenClass({
-  regex: /(https?|file|ftp):\/\/([a-zA-Z0-9~!@#$%\^&*()_\-=+\/?.:;',]*)?/g
+  regex: /(https?|file|ftp):\/\/([a-zA-Z0-9~!@#$%^&*()_\-=+/?.:;',]*)?/g
 });
 
 export default WrapUrlsComponent;
