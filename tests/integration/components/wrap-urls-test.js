@@ -6,10 +6,10 @@ import hbs from 'htmlbars-inline-precompile';
 import { text } from 'dummy/utils/samples';
 import { helper } from '@ember/component/helper';
 import { htmlSafe } from '@ember/string';
-const { escapeExpression } = Ember.Handlebars.Utils;
 import jQuery from 'jquery';
 import Component from '@ember/component';
 import WrapUrlsComponent from 'ember-wrap-urls/components/wrap-urls';
+const { escapeExpression } = Ember.Handlebars.Utils;
 
 
 
