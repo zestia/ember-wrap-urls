@@ -8,7 +8,7 @@ import { helper } from '@ember/component/helper';
 import { htmlSafe } from '@ember/string';
 import jQuery from 'jquery';
 import Component from '@ember/component';
-import WrapUrlsComponent from 'ember-wrap-urls/components/wrap-urls';
+import WrapUrlsComponent from '@zestia/ember-wrap-urls/components/wrap-urls';
 const { escapeExpression } = Ember.Handlebars.Utils;
 
 

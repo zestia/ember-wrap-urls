@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-wrap-urls'
+  name: '@zestia/ember-wrap-urls'
 };

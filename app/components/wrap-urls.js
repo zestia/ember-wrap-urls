@@ -1,1 +1,1 @@
-export { default } from 'ember-wrap-urls/components/wrap-urls';
+export { default } from '@zestia/ember-wrap-urls/components/wrap-urls';

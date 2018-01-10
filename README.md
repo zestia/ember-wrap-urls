@@ -1,12 +1,13 @@
-# ember-wrap-urls
+# @zestia/ember-wrap-urls
 
-<a href="http://emberobserver.com/addons/ember-wrap-urls"><img src="http://emberobserver.com/badges/ember-wrap-urls.svg"></a> &nbsp; <a href="https://david-dm.org/amk221/ember-wrap-urls#badge-embed"><img src="https://david-dm.org/amk221/ember-wrap-urls.svg"></a> &nbsp; <a href="https://david-dm.org/amk221/ember-wrap-urls#dev-badge-embed"><img src="https://david-dm.org/amk221/ember-wrap-urls/dev-status.svg"></a> &nbsp; <a href="https://codeclimate.com/github/amk221/ember-wrap-urls"><img src="https://codeclimate.com/github/amk221/ember-wrap-urls/badges/gpa.svg" /></a> &nbsp; <a href="http://travis-ci.org/amk221/ember-wrap-urls"><img src="https://travis-ci.org/amk221/ember-wrap-urls.svg?branch=master"></a>
+<a href="http://emberobserver.com/addons/ember-wrap-urls"><img src="http://emberobserver.com/badges/ember-wrap-urls.svg"></a> &nbsp; <a href="https://david-dm.org/zestia/ember-wrap-urls#badge-embed"><img src="https://david-dm.org/zestia/ember-wrap-urls.svg"></a> &nbsp; <a href="https://david-dm.org/zestia/ember-wrap-urls#dev-badge-embed"><img src="https://david-dm.org/zestia/ember-wrap-urls/dev-status.svg"></a> &nbsp;
+ <a href="http://travis-ci.org/zestia/ember-wrap-urls"><img src="https://travis-ci.org/zestia/ember-wrap-urls.svg?branch=master"></a>
 
 This Ember addon takes some text, which may or may not contain URLs and renders the text and each URL as an Ember component.
 
 ### Installation
 ```
-ember install ember-wrap-urls
+ember install @zestia/ember-wrap-urls
 ```
 
 ### Example usage
@@ -63,7 +64,7 @@ Specify your own component to customise how URLs are rendered:
 You change the pattern used to find hyperlinks:
 
 ```javascript
-import WrapUrlsComponent from 'ember-wrap-urls/components/wrap-urls';
+import WrapUrlsComponent from '@zestia/ember-wrap-urls/components/wrap-urls';
 
 WrapUrlsComponent.reopenClass({
   regex: /yourRegexGoesHere/g

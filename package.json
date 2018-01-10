@@ -1,6 +1,6 @@
 {
-  "name": "ember-wrap-urls",
-  "version": "1.0.14",
+  "name": "@zestia/ember-wrap-urls",
+  "version": "1.0.15",
   "description": "Automatically turns URLs into Hyperlinks for user-generated-content",
   "directories": {
     "doc": "doc",
@@ -13,12 +13,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/amk221/ember-wrap-urls.git"
+    "url": "https://github.com/zestia/ember-wrap-urls.git"
   },
   "engines": {
     "node": ">= 4"
   },
-  "author": "Andrew Kirwin",
+  "author": "Zestia",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "2.6.0",
@@ -59,8 +59,8 @@
     "configPath": "tests/dummy/config"
   },
   "bugs": {
-    "url": "https://github.com/amk221/ember-wrap-urls/issues"
+    "url": "https://github.com/zestia/ember-wrap-urls/issues"
   },
-  "homepage": "https://github.com/amk221/ember-wrap-urls",
+  "homepage": "https://github.com/zestia/ember-wrap-urls",
   "configPath": "tests/dummy/config"
 }
