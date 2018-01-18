@@ -59,9 +59,9 @@
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@zestia/ember-template-lint-plugin/-/ember-template-lint-plugin-1.0.1.tgz#edf6e90be527357b3aff1ae6c7f9808bdbac96f3"
 
-"@zestia/eslint-config@1.0.8":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@zestia/eslint-config/-/eslint-config-1.0.8.tgz#c4e90e7de29a1ba8f49c367d537466c05a5cbf00"
+"@zestia/eslint-config@1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@zestia/eslint-config/-/eslint-config-1.0.9.tgz#6cfde566326b3558622304172f3a4c17ba4215b7"
   dependencies:
     eslint-plugin-ember "5.0.3"
 

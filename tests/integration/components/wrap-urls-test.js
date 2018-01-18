@@ -1,12 +1,9 @@
-/* eslint-disable max-len */
-
 import { moduleForComponent, test } from 'ember-qunit';
 import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
 import { text } from 'dummy/utils/samples';
 import { helper } from '@ember/component/helper';
 import { htmlSafe } from '@ember/string';
-import jQuery from 'jquery';
 import Component from '@ember/component';
 import WrapUrlsComponent from '@zestia/ember-wrap-urls/components/wrap-urls';
 const { escapeExpression } = Ember.Handlebars.Utils;
@@ -18,7 +15,7 @@ moduleForComponent('wrap-urls', 'Integration | Component | wrap urls', {
 
   beforeEach() {
     this.getText = selector => {
-      return this.$(selector).map((i, el) => jQuery(el).text()).toArray();
+      return this.$(selector).map((i, el) => el.textContent).toArray();
     };
   }
 });
