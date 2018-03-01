@@ -1,65 +1,62 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('wrap-urls/link', {
-  integration: true
-});
+module('wrap-urls/link', function(hooks) {
+  setupRenderingTest(hooks);
 
+  test('it renders', async function(assert) {
+    assert.expect(4);
 
-test('it renders', function(assert) {
-  assert.expect(4);
+    await render(hbs`{{wrap-urls/link url="http://example.com"}}`);
 
-  this.render(hbs`{{wrap-urls/link url='http://example.com'}}`);
+    assert.equal(this.$('.wrapped-url-link').length, 1,
+      'renders a url with an appropriate class name');
 
-  assert.equal(this.$('.wrapped-url-link').length, 1,
-    'renders a url with an appropriate class name');
+    assert.equal(this.$('.wrapped-url-link').prop('tagName'), 'A',
+      'renders as an inline element');
 
-  assert.equal(this.$('.wrapped-url-link').prop('tagName'), 'A',
-    'renders as an inline element');
+    assert.equal(this.$('.wrapped-url-link').text(), 'http://example.com',
+      'renders the url');
 
-  assert.equal(this.$('.wrapped-url-link').text(), 'http://example.com',
-    'renders the url');
+    assert.equal(this.$('.wrapped-url-link').attr('href'), 'http://example.com',
+      'renders the url as a wrapped link');
+  });
 
-  assert.equal(this.$('.wrapped-url-link').attr('href'), 'http://example.com',
-    'renders the url as a wrapped link');
-});
+  test('name', async function(assert) {
+    assert.expect(1);
 
+    await render(hbs`{{wrap-urls/link name="foo"}}`);
 
-test('name', function(assert) {
-  assert.expect(1);
+    assert.equal(this.$('.wrapped-url-link').attr('name'), 'foo',
+      'can specify a name attribute');
+  });
 
-  this.render(hbs`{{wrap-urls/link name='foo'}}`);
+  test('target', async function(assert) {
+    assert.expect(1);
 
-  assert.equal(this.$('.wrapped-url-link').attr('name'), 'foo',
-    'can specify a name attribute');
-});
+    await render(hbs`{{wrap-urls/link target="_blank"}}`);
 
+    assert.equal(this.$('.wrapped-url-link').attr('target'), '_blank',
+      'can specify a target attribute');
+  });
 
-test('target', function(assert) {
-  assert.expect(1);
+  test('rel', async function(assert) {
+    assert.expect(1);
 
-  this.render(hbs`{{wrap-urls/link target='_blank'}}`);
+    await render(hbs`{{wrap-urls/link rel="nofollow"}}`);
 
-  assert.equal(this.$('.wrapped-url-link').attr('target'), '_blank',
-    'can specify a target attribute');
-});
+    assert.equal(this.$('.wrapped-url-link').attr('rel'), 'nofollow',
+      'can specify a rel attribute');
+  });
 
+  test('id', async function(assert) {
+    assert.expect(1);
 
-test('rel', function(assert) {
-  assert.expect(1);
+    await render(hbs`{{wrap-urls/link id="foo"}}`);
 
-  this.render(hbs`{{wrap-urls/link rel='nofollow'}}`);
-
-  assert.equal(this.$('.wrapped-url-link').attr('rel'), 'nofollow',
-    'can specify a rel attribute');
-});
-
-
-test('id', function(assert) {
-  assert.expect(1);
-
-  this.render(hbs`{{wrap-urls/link id='foo'}}`);
-
-  assert.equal(this.$('.wrapped-url-link').attr('id'), 'foo',
-    'can specify a id attribute');
+    assert.equal(this.$('.wrapped-url-link').attr('id'), 'foo',
+      'can specify a id attribute');
+  });
 });
