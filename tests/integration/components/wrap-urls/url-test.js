@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { render, find, findAll } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | wrap urls/url', function(hooks) {
@@ -11,13 +11,13 @@ module('Integration | Component | wrap urls/url', function(hooks) {
 
     await render(hbs`{{wrap-urls/url url="http://example.com"}}`);
 
-    assert.equal(this.$('.wrapped-url').length, 1,
+    assert.equal(findAll('.wrapped-url').length, 1,
       'renders a url with an appropriate class name');
 
-    assert.equal(this.$('.wrapped-url').prop('tagName'), 'SPAN',
+    assert.equal(find('.wrapped-url').tagName, 'SPAN',
       'renders as an inline element');
 
-    assert.equal(this.$('.wrapped-url').text(), 'http://example.com',
+    assert.equal(find('.wrapped-url').textContent, 'http://example.com',
       'renders the url');
   });
 });
