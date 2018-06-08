@@ -60,7 +60,7 @@ module('Integration | Component | wrap urls', function(hooks) {
       return htmlSafe(escapeExpression(string.slice(0, length)));
     }));
 
-    await render(hbs`{{wrap-urls text=(truncate 'visit http://example.com' 16)}}`);
+    await render(hbs`{{wrap-urls text=(truncate "visit http://example.com" 16)}}`);
 
     assert.equal(this.get('element').textContent, 'visit http://exa');
 
@@ -124,7 +124,7 @@ module('Integration | Component | wrap urls', function(hooks) {
     await render(hbs`
       {{~wrap-urls
         text="visit http://my http://link"
-        component=(component 'x-foo' target="foo")~}}
+        component=(component "x-foo" target="foo")~}}
     `);
 
     assert.equal(this.get('element').textContent, 'visit http://my http://link');
