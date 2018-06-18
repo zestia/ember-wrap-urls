@@ -29,19 +29,27 @@ const WrapUrlsComponent = Component.extend({
 
       string = text.slice(lastIndex, start);
 
+      lastIndex = start + url.length;
+
       if (string) {
-        parts.push({ text: string });
+        parts.push({
+          text: string
+        });
       }
 
-      parts.push({ url });
-
-      lastIndex = start + url.length;
+      parts.push({
+        url,
+        start,
+        end: lastIndex
+      });
     }
 
     string = text.slice(lastIndex);
 
     if (string) {
-      parts.push({ text: string });
+      parts.push({
+        text: string
+      });
     }
 
     return parts;

@@ -170,4 +170,26 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     assert.deepEqual(this.getText('.wrapped-url'), ['http://bar.com']);
   });
+
+  test('start and end properties', async function(assert) {
+    assert.expect(1);
+
+    const MyLinkComponent = Component.extend({
+      classNames: ['my-link'],
+      layout: hbs`{{start}} {{url}} {{end}}`
+    });
+
+    this.owner.register('component:my-link', MyLinkComponent);
+
+    await render(hbs`
+      {{~wrap-urls
+        text="One: http://one.com Two: http://two.com"
+        component=(component "my-link")~}}
+    `);
+
+    assert.deepEqual(this.getText('.my-link'), [
+      '5 http://one.com 19',
+      '25 http://two.com 39'
+    ], 'start and end of url position is passed to the component');
+  });
 });

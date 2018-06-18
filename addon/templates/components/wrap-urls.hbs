@@ -1,6 +1,6 @@
 {{#each this.parts as |part|}}
   {{#if part.url}}
-    {{~component urlComponent url=part.url~}}
+    {{~component urlComponent url=part.url start=part.start end=part.end~}}
   {{else}}
     {{~part.text~}}
   {{/if}}
