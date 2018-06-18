@@ -15,7 +15,7 @@ ember install @zestia/ember-wrap-urls
 Given the following:
 
 ```handlebars
-{{wrap-urls text='Check out my link: http://example.com'}}
+{{wrap-urls text="Check out my link: http://example.com"}}
 ```
 
 Will render:
@@ -36,7 +36,7 @@ By default, URLs will be rendered using `wrap-urls/url`
 You can set `component` to change which component is used to render each URL:
 
 ```handlebars
-{{wrap-urls text='Visit http://example.com' component='wrap-urls/link'}}
+{{wrap-urls text="Visit http://example.com" component="wrap-urls/link"}}
 ```
 
 Will result in:
@@ -49,8 +49,8 @@ To send in your own attributes:
 
 ```handlebars
 {{wrap-urls
-  text='Visit http://example.com'
-  component=(component 'wrap-urls/link' target="_blank")}}
+  text="Visit http://example.com"
+  component=(component "wrap-urls/link" target="_blank")}}
 ```
 
 ### Customising
@@ -58,10 +58,12 @@ To send in your own attributes:
 Specify your own component to customise how URLs are rendered:
 
 ```handlebars
-{{wrap-urls text=text component=(component 'my-tooltip')}}
+{{wrap-urls text=text component=(component "my-link")}}
 ```
 
-You change the pattern used to find hyperlinks:
+Then, in your component's template you will have access to `@url`, `@start`, and `@end`.
+
+You can also change the pattern used to find hyperlinks:
 
 ```javascript
 import WrapUrlsComponent from '@zestia/ember-wrap-urls/components/wrap-urls';
