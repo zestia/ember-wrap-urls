@@ -46,7 +46,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     this.set('text', null);
 
-    await render(hbs`{{wrap-urls text=text}}`);
+    await render(hbs`{{wrap-urls text=this.text}}`);
 
     assert.equal(this.element.innerHTML, '<!---->',
       'does not blow up');
@@ -72,7 +72,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     this.set('text', text);
 
-    await render(hbs`{{wrap-urls text=text}}`);
+    await render(hbs`{{wrap-urls text=this.text}}`);
 
     assert.equal(this.element.textContent, text);
 
@@ -94,7 +94,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     this.set('text', text);
 
-    await render(hbs`{{wrap-urls text=text component="wrap-urls/link"}}`);
+    await render(hbs`{{wrap-urls text=this.text component="wrap-urls/link"}}`);
 
     assert.equal(this.element.textContent, text);
 
@@ -158,7 +158,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     this.set('text', 'http://foo.com');
 
-    await render(hbs`{{wrap-urls text=text}}`);
+    await render(hbs`{{wrap-urls text=this.text}}`);
 
     assert.equal(this.element.textContent, 'http://foo.com');
 
