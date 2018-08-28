@@ -23,12 +23,12 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     await render(hbs`{{wrap-urls}}`);
 
-    assert.equal(this.get('element').innerHTML, '<!---->',
+    assert.equal(this.element.innerHTML, '<!---->',
       'renders as a tagless component');
 
     await render(hbs`{{#wrap-urls}}foo{{/wrap-urls}}`);
 
-    assert.equal(this.get('element').innerHTML, '<!---->',
+    assert.equal(this.element.innerHTML, '<!---->',
       'no block mode');
   });
 
@@ -37,7 +37,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     await render(hbs`{{wrap-urls text="<script>"}}`);
 
-    assert.equal(this.get('element').innerHTML, '&lt;script&gt;',
+    assert.equal(this.element.innerHTML, '&lt;script&gt;',
       'text is escaped');
   });
 
@@ -48,7 +48,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     await render(hbs`{{wrap-urls text=text}}`);
 
-    assert.equal(this.get('element').innerHTML, '<!---->',
+    assert.equal(this.element.innerHTML, '<!---->',
       'does not blow up');
   });
 
@@ -62,7 +62,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     await render(hbs`{{wrap-urls text=(truncate "visit http://example.com" 16)}}`);
 
-    assert.equal(this.get('element').textContent, 'visit http://exa');
+    assert.equal(this.element.textContent, 'visit http://exa');
 
     assert.deepEqual(this.getText('.wrapped-url'), ['http://exa']);
   });
@@ -74,7 +74,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     await render(hbs`{{wrap-urls text=text}}`);
 
-    assert.equal(this.get('element').textContent, text);
+    assert.equal(this.element.textContent, text);
 
     assert.deepEqual(this.getText('.wrapped-url'), [
       'http://foo.com',
@@ -96,7 +96,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     await render(hbs`{{wrap-urls text=text component="wrap-urls/link"}}`);
 
-    assert.equal(this.get('element').textContent, text);
+    assert.equal(this.element.textContent, text);
 
     assert.deepEqual(this.getText('.wrapped-url-link'), [
       'http://foo.com',
@@ -127,7 +127,7 @@ module('Integration | Component | wrap urls', function(hooks) {
         component=(component "x-foo" target="foo")~}}
     `);
 
-    assert.equal(this.get('element').textContent, 'visit http://my http://link');
+    assert.equal(this.element.textContent, 'visit http://my http://link');
 
     assert.deepEqual(this.getText('[target="foo"]'), [
       'http://my',
@@ -146,7 +146,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     await render(hbs`{{wrap-urls text="email me mailto:fred@smith.com"}}`);
 
-    assert.equal(this.get('element').textContent, 'email me mailto:fred@smith.com');
+    assert.equal(this.element.textContent, 'email me mailto:fred@smith.com');
 
     assert.deepEqual(this.getText('.wrapped-url'), ['mailto:fred@smith.com']);
 
@@ -160,13 +160,13 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     await render(hbs`{{wrap-urls text=text}}`);
 
-    assert.equal(this.get('element').textContent, 'http://foo.com');
+    assert.equal(this.element.textContent, 'http://foo.com');
 
     assert.deepEqual(this.getText('.wrapped-url'), ['http://foo.com']);
 
     this.set('text', 'http://bar.com');
 
-    assert.equal(this.get('element').textContent, 'http://bar.com');
+    assert.equal(this.element.textContent, 'http://bar.com');
 
     assert.deepEqual(this.getText('.wrapped-url'), ['http://bar.com']);
   });

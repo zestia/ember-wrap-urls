@@ -10,8 +10,8 @@ const WrapUrlsComponent = Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
-    this.set('parts', this._textToParts(this.get('text')));
-    this.set('urlComponent', this.getWithDefault('component', 'wrap-urls/url'));
+    this.set('parts', this._textToParts(this.text));
+    this.set('urlComponent', this.component || 'wrap-urls/url');
   },
 
   _textToParts(text) {
