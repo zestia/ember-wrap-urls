@@ -45,7 +45,7 @@ Will result in:
 Visit <a class="wrapped-url-link" href="http://example.com">http://example.com</a>
 ```
 
-To send in your own attributes:
+To send in your own arguments:
 
 ```handlebars
 <WrapUrls
