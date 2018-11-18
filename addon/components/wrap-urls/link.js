@@ -7,12 +7,5 @@ export default Component.extend({
 
   classNames: ['wrapped-url-link'],
 
-  attributeBindings: [
-    'url:href',
-
-    'name',
-    'target',
-    'rel',
-    'id'
-  ]
+  attributeBindings: ['url:href', 'name', 'target', 'rel', 'id']
 });

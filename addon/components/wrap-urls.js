@@ -23,8 +23,8 @@ const WrapUrlsComponent = Component.extend({
     let match;
     let string;
 
-    while (match = WrapUrlsComponent.regex.exec(text)) {
-      const [ url ] = match;
+    while ((match = WrapUrlsComponent.regex.exec(text))) {
+      const [url] = match;
       const { index: start } = match;
 
       string = text.slice(lastIndex, start);

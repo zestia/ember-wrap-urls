@@ -23,13 +23,11 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     await render(hbs`{{wrap-urls}}`);
 
-    assert.equal(this.element.innerHTML, '<!---->',
-      'renders as a tagless component');
+    assert.equal(this.element.innerHTML, '<!---->', 'renders as a tagless component');
 
     await render(hbs`{{#wrap-urls}}foo{{/wrap-urls}}`);
 
-    assert.equal(this.element.innerHTML, '<!---->',
-      'no block mode');
+    assert.equal(this.element.innerHTML, '<!---->', 'no block mode');
   });
 
   test('escaping', async function(assert) {
@@ -37,8 +35,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     await render(hbs`{{wrap-urls text="<script>"}}`);
 
-    assert.equal(this.element.innerHTML, '&lt;script&gt;',
-      'text is escaped');
+    assert.equal(this.element.innerHTML, '&lt;script&gt;', 'text is escaped');
   });
 
   test('null text', async function(assert) {
@@ -48,21 +45,23 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     await render(hbs`{{wrap-urls text=this.text}}`);
 
-    assert.equal(this.element.innerHTML, '<!---->',
-      'does not blow up');
+    assert.equal(this.element.innerHTML, '<!---->', 'does not blow up');
   });
 
   test('safe strings', async function(assert) {
     assert.expect(2);
 
-    this.owner.register('helper:truncate', helper(function(args) {
-      const [ string, length ] = args;
-      return htmlSafe(escapeExpression(string.slice(0, length)));
-    }));
+    this.owner.register(
+      'helper:truncate',
+      helper(function(args) {
+        const [string, length] = args;
+        return htmlSafe(escapeExpression(string.slice(0, length)));
+      })
+    );
 
     await render(hbs`{{wrap-urls text=(truncate "visit http://example.com" 16)}}`);
 
-    assert.equal(this.element.textContent, 'visit http://exa');
+    assert.dom(this.element).hasText('visit http://exa');
 
     assert.deepEqual(this.getText('.wrapped-url'), ['http://exa']);
   });
@@ -74,7 +73,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     await render(hbs`{{wrap-urls text=this.text}}`);
 
-    assert.equal(this.element.textContent, text);
+    assert.dom(this.element).hasText(text);
 
     assert.deepEqual(this.getText('.wrapped-url'), [
       'http://foo.com',
@@ -96,7 +95,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     await render(hbs`{{wrap-urls text=this.text component="wrap-urls/link"}}`);
 
-    assert.equal(this.element.textContent, text);
+    assert.dom(this.element).hasText(text);
 
     assert.deepEqual(this.getText('.wrapped-url-link'), [
       'http://foo.com',
@@ -127,12 +126,9 @@ module('Integration | Component | wrap urls', function(hooks) {
         component=(component "x-foo" target="foo")~}}
     `);
 
-    assert.equal(this.element.textContent, 'visit http://my http://link');
+    assert.dom(this.element).hasText('visit http://my http://link');
 
-    assert.deepEqual(this.getText('[target="foo"]'), [
-      'http://my',
-      'http://link'
-    ]);
+    assert.deepEqual(this.getText('[target="foo"]'), ['http://my', 'http://link']);
   });
 
   test('custom pattern', async function(assert) {
@@ -146,7 +142,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     await render(hbs`{{wrap-urls text="email me mailto:fred@smith.com"}}`);
 
-    assert.equal(this.element.textContent, 'email me mailto:fred@smith.com');
+    assert.dom(this.element).hasText('email me mailto:fred@smith.com');
 
     assert.deepEqual(this.getText('.wrapped-url'), ['mailto:fred@smith.com']);
 
@@ -160,13 +156,13 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     await render(hbs`{{wrap-urls text=this.text}}`);
 
-    assert.equal(this.element.textContent, 'http://foo.com');
+    assert.dom(this.element).hasText('http://foo.com');
 
     assert.deepEqual(this.getText('.wrapped-url'), ['http://foo.com']);
 
     this.set('text', 'http://bar.com');
 
-    assert.equal(this.element.textContent, 'http://bar.com');
+    assert.dom(this.element).hasText('http://bar.com');
 
     assert.deepEqual(this.getText('.wrapped-url'), ['http://bar.com']);
   });
@@ -187,9 +183,10 @@ module('Integration | Component | wrap urls', function(hooks) {
         component=(component "my-link")~}}
     `);
 
-    assert.deepEqual(this.getText('.my-link'), [
-      '5 http://one.com 19',
-      '25 http://two.com 39'
-    ], 'start and end of url position is passed to the component');
+    assert.deepEqual(
+      this.getText('.my-link'),
+      ['5 http://one.com 19', '25 http://two.com 39'],
+      'start and end of url position is passed to the component'
+    );
   });
 });
