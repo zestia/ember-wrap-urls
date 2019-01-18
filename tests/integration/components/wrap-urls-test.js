@@ -1,6 +1,6 @@
-import { module, test } from 'qunit';
+import { module, test, skip } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, findAll } from '@ember/test-helpers';
+import { render, click, find, findAll } from '@ember/test-helpers';
 import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
 import { text } from 'dummy/utils/samples';
@@ -188,5 +188,30 @@ module('Integration | Component | wrap urls', function(hooks) {
       ['5 http://one.com 19', '25 http://two.com 39'],
       'start and end of url position is passed to the component'
     );
+  });
+
+  skip('issue: https://github.com/emberjs/ember.js/issues/17458', async function(assert) {
+    assert.expect(0);
+
+    this.set('text', 'http://emberjs.com');
+
+    this.set('viewMore', () => {
+      this.set('text', 'Visit: http://emberjs.com');
+    });
+
+    await render(hbs`
+      {{wrap-urls text=this.text}}
+
+      <button onclick={{action this.viewMore}}>View more</button>
+    `);
+
+    // Mimic what Google Translate does
+    const url = find('.wrapped-url');
+    const wrapper = document.createElement('font');
+
+    url.parentNode.insertBefore(wrapper, url);
+    wrapper.appendChild(url);
+
+    await click('button');
   });
 });
