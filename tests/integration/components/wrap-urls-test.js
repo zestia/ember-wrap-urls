@@ -21,7 +21,7 @@ module('Integration | Component | wrap urls', function(hooks) {
   test('it renders', async function(assert) {
     assert.expect(2);
 
-    await render(hbs`{{wrap-urls}}`);
+    await render(hbs`{{component "wrap-urls"}}`);
 
     assert.equal(this.element.innerHTML, '<!---->', 'renders as a tagless component');
 
@@ -115,7 +115,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     const XFooComponent = Component.extend({
       attributeBindings: ['target'],
-      layout: hbs`{{url}}`
+      layout: hbs`{{@url}}`
     });
 
     this.owner.register('component:x-foo', XFooComponent);
@@ -172,7 +172,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     const MyLinkComponent = Component.extend({
       classNames: ['my-link'],
-      layout: hbs`{{start}} {{url}} {{end}}`
+      layout: hbs`{{@start}} {{@url}} {{@end}}`
     });
 
     this.owner.register('component:my-link', MyLinkComponent);

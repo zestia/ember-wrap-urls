@@ -1,15 +1,13 @@
 <h1>@zestia/ember-wrap-urls</h1>
 
 <div class="ugc">
-  {{wrap-urls
-    text=text
-    component=(component "wrap-urls/link" target="_blank")
-  }}
+  <WrapUrls
+    @text={{this.text}}
+    @component={{component "wrap-urls/link" target="_blank"}} />
 
-  {{wrap-urls
-    text=text
-    component="wrap-urls/url"
-  }}
+  <WrapUrls
+    @text={{this.text}}
+    @component="wrap-urls/url" />
 </div>
 
 {{!outlet}}
