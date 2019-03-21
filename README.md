@@ -1,7 +1,7 @@
 # @zestia/ember-wrap-urls
 
-<a href="http://emberobserver.com/addons/ember-wrap-urls"><img src="http://emberobserver.com/badges/ember-wrap-urls.svg"></a> &nbsp; <a href="https://david-dm.org/zestia/ember-wrap-urls#badge-embed"><img src="https://david-dm.org/zestia/ember-wrap-urls.svg"></a> &nbsp; <a href="https://david-dm.org/zestia/ember-wrap-urls#dev-badge-embed"><img src="https://david-dm.org/zestia/ember-wrap-urls/dev-status.svg"></a> &nbsp;
- <a href="http://travis-ci.org/zestia/ember-wrap-urls"><img src="https://travis-ci.org/zestia/ember-wrap-urls.svg?branch=master"></a>
+<a href="https://badge.fury.io/js/%40zestia%2Fember-wrap-urls"><img src="https://badge.fury.io/js/%40zestia%2Fember-wrap-urls.svg" alt="npm version" height="18"></a> &nbsp;
+ <a href="http://travis-ci.org/zestia/ember-wrap-urls"><img src="https://travis-ci.org/zestia/ember-wrap-urls.svg?branch=master"></a> &nbsp; <a href="https://david-dm.org/zestia/ember-wrap-urls#badge-embed"><img src="https://david-dm.org/zestia/ember-wrap-urls.svg"></a> &nbsp; <a href="https://david-dm.org/zestia/ember-wrap-urls#dev-badge-embed"><img src="https://david-dm.org/zestia/ember-wrap-urls/dev-status.svg"></a> &nbsp; <a href="http://emberobserver.com/addons/ember-wrap-urls"><img src="http://emberobserver.com/badges/ember-wrap-urls.svg"></a>
 
 This Ember addon takes some text, which may or may not contain URLs and renders the text and each URL as an Ember component.
 
