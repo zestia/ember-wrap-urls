@@ -1,6 +1,6 @@
 {
   "name": "@zestia/ember-wrap-urls",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "Automatically turns URLs into Hyperlinks for user-generated-content",
   "directories": {
     "doc": "doc",
