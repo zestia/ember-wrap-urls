@@ -21,11 +21,11 @@ module('Integration | Component | wrap urls', function(hooks) {
   test('it renders', async function(assert) {
     assert.expect(2);
 
-    await render(hbs`{{component "wrap-urls"}}`);
+    await render(hbs`<WrapUrls />`);
 
     assert.equal(this.element.innerHTML, '<!---->', 'renders as a tagless component');
 
-    await render(hbs`{{#wrap-urls}}foo{{/wrap-urls}}`);
+    await render(hbs`<WrapUrls>foo</WrapUrls>`);
 
     assert.equal(this.element.innerHTML, '<!---->', 'no block mode');
   });
@@ -33,7 +33,7 @@ module('Integration | Component | wrap urls', function(hooks) {
   test('escaping', async function(assert) {
     assert.expect(1);
 
-    await render(hbs`{{wrap-urls text="<script>"}}`);
+    await render(hbs`<WrapUrls @text="<script>" />`);
 
     assert.equal(this.element.innerHTML, '&lt;script&gt;', 'text is escaped');
   });
@@ -43,7 +43,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     this.set('text', null);
 
-    await render(hbs`{{wrap-urls text=this.text}}`);
+    await render(hbs`<WrapUrls @text={{this.text}} />`);
 
     assert.equal(this.element.innerHTML, '<!---->', 'does not blow up');
   });
@@ -59,7 +59,7 @@ module('Integration | Component | wrap urls', function(hooks) {
       })
     );
 
-    await render(hbs`{{wrap-urls text=(truncate "visit http://example.com" 16)}}`);
+    await render(hbs`<WrapUrls @text={{truncate "visit http://example.com" 16}} />`);
 
     assert.dom(this.element).hasText('visit http://exa');
 
@@ -71,7 +71,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     this.set('text', text);
 
-    await render(hbs`{{wrap-urls text=this.text}}`);
+    await render(hbs`<WrapUrls @text={{this.text}} />`);
 
     assert.dom(this.element).hasText(text);
 
@@ -93,7 +93,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     this.set('text', text);
 
-    await render(hbs`{{wrap-urls text=this.text component="wrap-urls/link"}}`);
+    await render(hbs`<WrapUrls @text={{this.text}} @component="wrap-urls/link" />`);
 
     assert.dom(this.element).hasText(text);
 
@@ -121,9 +121,9 @@ module('Integration | Component | wrap urls', function(hooks) {
     this.owner.register('component:x-foo', XFooComponent);
 
     await render(hbs`
-      {{~wrap-urls
-        text="visit http://my http://link"
-        component=(component "x-foo" target="foo")~}}
+      <WrapUrls
+        @text="visit http://my http://link"
+        @component={{component "x-foo" target="foo"}} />
     `);
 
     assert.dom(this.element).hasText('visit http://my http://link');
@@ -140,7 +140,7 @@ module('Integration | Component | wrap urls', function(hooks) {
       regex: /mailto:(.*)?/g
     });
 
-    await render(hbs`{{wrap-urls text="email me mailto:fred@smith.com"}}`);
+    await render(hbs`<WrapUrls @text="email me mailto:fred@smith.com" />`);
 
     assert.dom(this.element).hasText('email me mailto:fred@smith.com');
 
@@ -154,7 +154,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     this.set('text', 'http://foo.com');
 
-    await render(hbs`{{wrap-urls text=this.text}}`);
+    await render(hbs`<WrapUrls @text={{this.text}} />`);
 
     assert.dom(this.element).hasText('http://foo.com');
 
@@ -178,9 +178,9 @@ module('Integration | Component | wrap urls', function(hooks) {
     this.owner.register('component:my-link', MyLinkComponent);
 
     await render(hbs`
-      {{~wrap-urls
-        text="One: http://one.com Two: http://two.com"
-        component=(component "my-link")~}}
+      <WrapUrls
+        @text="One: http://one.com Two: http://two.com"
+        @component={{component "my-link"}} />
     `);
 
     assert.deepEqual(
@@ -200,7 +200,7 @@ module('Integration | Component | wrap urls', function(hooks) {
     });
 
     await render(hbs`
-      {{wrap-urls text=this.text}}
+      <WrapUrls @text={{this.text}} />
 
       <button onclick={{action this.viewMore}}>View more</button>
     `);
