@@ -1,9 +1,13 @@
 # Changelog
 
-1.0.23
+## 1.0.24
 
-* Update dependencies
+- Update dependencies
 
-< 1.0.23
+## 1.0.23
 
-* No changelog
+- Update dependencies
+
+## < 1.0.23
+
+- No changelog
