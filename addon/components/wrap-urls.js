@@ -1,7 +1,6 @@
-/* eslint-disable no-cond-assign */
-
 import Component from '@ember/component';
 import layout from '../templates/components/wrap-urls';
+import { set } from '@ember/object';
 
 const WrapUrlsComponent = Component.extend({
   layout,
@@ -10,8 +9,8 @@ const WrapUrlsComponent = Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
-    this.set('parts', this._textToParts(this.text));
-    this.set('urlComponent', this.component || 'wrap-urls/url');
+    set(this, 'parts', this._textToParts(this.text));
+    set(this, 'urlComponent', this.component || 'wrap-urls/url');
   },
 
   _textToParts(text) {
