@@ -133,6 +133,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
   test('custom pattern', async function(assert) {
     assert.expect(2);
+    /* eslint-disable require-atomic-updates */
 
     const originalRegex = WrapUrlsComponent.regex;
 
