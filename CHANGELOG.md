@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.26
+
+- Upgrade dependencies
+
 ## 1.0.25
 
 - Upgrade dependencies
