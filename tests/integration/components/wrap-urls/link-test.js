@@ -15,13 +15,23 @@ module('wrap-urls/link', function(hooks) {
       .dom('.wrapped-url-link')
       .exists({ count: 1 }, 'renders a url with an appropriate class name');
 
-    assert.equal(find('.wrapped-url-link').tagName, 'A', 'renders as an inline element');
-
-    assert.dom('.wrapped-url-link').hasText('http://example.com', 'renders the url');
+    assert.equal(
+      find('.wrapped-url-link').tagName,
+      'A',
+      'renders as an inline element'
+    );
 
     assert
       .dom('.wrapped-url-link')
-      .hasAttribute('href', 'http://example.com', 'renders the url as a wrapped link');
+      .hasText('http://example.com', 'renders the url');
+
+    assert
+      .dom('.wrapped-url-link')
+      .hasAttribute(
+        'href',
+        'http://example.com',
+        'renders the url as a wrapped link'
+      );
   });
 
   test('name', async function(assert) {
@@ -29,7 +39,9 @@ module('wrap-urls/link', function(hooks) {
 
     await render(hbs`{{wrap-urls/link name="foo"}}`);
 
-    assert.dom('.wrapped-url-link').hasAttribute('name', 'foo', 'can specify a name attribute');
+    assert
+      .dom('.wrapped-url-link')
+      .hasAttribute('name', 'foo', 'can specify a name attribute');
   });
 
   test('target', async function(assert) {
@@ -47,7 +59,9 @@ module('wrap-urls/link', function(hooks) {
 
     await render(hbs`{{wrap-urls/link rel="nofollow"}}`);
 
-    assert.dom('.wrapped-url-link').hasAttribute('rel', 'nofollow', 'can specify a rel attribute');
+    assert
+      .dom('.wrapped-url-link')
+      .hasAttribute('rel', 'nofollow', 'can specify a rel attribute');
   });
 
   test('id', async function(assert) {
@@ -55,6 +69,8 @@ module('wrap-urls/link', function(hooks) {
 
     await render(hbs`{{wrap-urls/link id="foo"}}`);
 
-    assert.dom('.wrapped-url-link').hasAttribute('id', 'foo', 'can specify a id attribute');
+    assert
+      .dom('.wrapped-url-link')
+      .hasAttribute('id', 'foo', 'can specify a id attribute');
   });
 });

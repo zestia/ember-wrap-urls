@@ -15,7 +15,8 @@ module('Integration | Component | wrap urls', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function() {
-    this.getText = selector => from(findAll(selector)).map(el => el.textContent);
+    this.getText = selector =>
+      from(findAll(selector)).map(el => el.textContent);
   });
 
   test('it renders', async function(assert) {
@@ -23,7 +24,11 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     await render(hbs`<WrapUrls />`);
 
-    assert.equal(this.element.innerHTML, '<!---->', 'renders as a tagless component');
+    assert.equal(
+      this.element.innerHTML,
+      '<!---->',
+      'renders as a tagless component'
+    );
 
     await render(hbs`<WrapUrls>foo</WrapUrls>`);
 
@@ -59,7 +64,9 @@ module('Integration | Component | wrap urls', function(hooks) {
       })
     );
 
-    await render(hbs`<WrapUrls @text={{truncate "visit http://example.com" 16}} />`);
+    await render(
+      hbs`<WrapUrls @text={{truncate "visit http://example.com" 16}} />`
+    );
 
     assert.dom(this.element).hasText('visit http://exa');
 
@@ -93,7 +100,9 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     this.set('text', text);
 
-    await render(hbs`<WrapUrls @text={{this.text}} @component="wrap-urls/link" />`);
+    await render(
+      hbs`<WrapUrls @text={{this.text}} @component="wrap-urls/link" />`
+    );
 
     assert.dom(this.element).hasText(text);
 
@@ -128,7 +137,10 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     assert.dom(this.element).hasText('visit http://my http://link');
 
-    assert.deepEqual(this.getText('[target="foo"]'), ['http://my', 'http://link']);
+    assert.deepEqual(this.getText('[target="foo"]'), [
+      'http://my',
+      'http://link'
+    ]);
   });
 
   test('custom pattern', async function(assert) {

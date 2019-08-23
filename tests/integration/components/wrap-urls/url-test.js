@@ -11,9 +11,15 @@ module('Integration | Component | wrap urls/url', function(hooks) {
 
     await render(hbs`{{wrap-urls/url url="http://example.com"}}`);
 
-    assert.dom('.wrapped-url').exists({ count: 1 }, 'renders a url with an appropriate class name');
+    assert
+      .dom('.wrapped-url')
+      .exists({ count: 1 }, 'renders a url with an appropriate class name');
 
-    assert.equal(find('.wrapped-url').tagName, 'SPAN', 'renders as an inline element');
+    assert.equal(
+      find('.wrapped-url').tagName,
+      'SPAN',
+      'renders as an inline element'
+    );
 
     assert.dom('.wrapped-url').hasText('http://example.com', 'renders the url');
   });
