@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.27
+
+- Update templates
+
 ## 1.0.26
 
 - Upgrade dependencies
