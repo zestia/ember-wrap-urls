@@ -1,8 +1,10 @@
 # Changelog
 
-## 1.0.27
+## 2.0.0
 
 - Update templates
+- Attribute forwarding removed from `wrap-urls/link` and `wrap-urls/url`,
+  if you still need this, please use your own component instead.
 
 ## 1.0.26
 

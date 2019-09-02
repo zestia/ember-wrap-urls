@@ -119,6 +119,22 @@ module('Integration | Component | wrap urls', function(hooks) {
     ]);
   });
 
+  skip('it forwards attributes', async function(assert) {
+    assert.expect(1);
+
+    // Not working due to splattributes not forwarding with component helper
+
+    this.set('text', text);
+
+    await render(hbs`
+      <WrapUrls
+        @text={{this.text}}
+        @component={{component "wrap-urls/link" target="_blank"}} />
+    `);
+
+    assert.dom('a[target="_blank"]').exists({ count: 9 });
+  });
+
   test('custom component', async function(assert) {
     assert.expect(2);
 
@@ -215,7 +231,7 @@ module('Integration | Component | wrap urls', function(hooks) {
     await render(hbs`
       <WrapUrls @text={{this.text}} />
 
-      <button {{on "click" (action this.viewMore)}}>View more</button>
+      <button onclick={{this.viewMore}}>View more</button>
     `);
 
     // Mimic what Google Translate does
