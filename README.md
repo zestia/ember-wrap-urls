@@ -5,13 +5,13 @@
 
 This Ember addon takes some text, which may or may not contain URLs and renders the text and each URL as an Ember component.
 
-### Installation
+## Installation
 
 ```
 ember install @zestia/ember-wrap-urls
 ```
 
-### Example usage
+## Example
 
 Given the following:
 
@@ -25,7 +25,7 @@ Will render:
 Check out my link <span class="wrapped-url">http://example.com</span>
 ```
 
-### Built in components
+## Built in components
 
 This addon comes with two extra components:
 
@@ -55,7 +55,7 @@ To send in your own arguments:
   @component={{component "wrap-urls/link" target="_blank"}} />
 ```
 
-### Customising
+## Customising
 
 Specify your own component to customise how URLs are rendered:
 
