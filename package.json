@@ -15,7 +15,8 @@
     "prettier": "prettier '**/*.{js,json,css,scss,html,md}' --write",
     "start": "ember serve",
     "test": "ember test && npm run lint",
-    "test:all": "ember try:each"
+    "test:all": "ember try:each",
+    "release": "release-it"
   },
   "repository": {
     "type": "git",
