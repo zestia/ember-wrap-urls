@@ -231,7 +231,7 @@ module('Integration | Component | wrap urls', function(hooks) {
     await render(hbs`
       <WrapUrls @text={{this.text}} />
 
-      <button onclick={{this.viewMore}}>View more</button>
+      <button type="button" {{on "click" this.viewMore}}>View more</button>
     `);
 
     // Mimic what Google Translate does
