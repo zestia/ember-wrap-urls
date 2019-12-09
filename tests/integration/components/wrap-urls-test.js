@@ -138,17 +138,17 @@ module('Integration | Component | wrap urls', function(hooks) {
   test('custom component', async function(assert) {
     assert.expect(2);
 
-    const XFooComponent = Component.extend({
-      attributeBindings: ['target'],
-      layout: hbs`{{@url}}`
-    });
+    class FooComponent extends Component {
+      tagName = '';
+      layout = hbs`<a href={{@url}} target="foo">{{@url}}</a>`;
+    }
 
-    this.owner.register('component:x-foo', XFooComponent);
+    this.owner.register('component:foo', FooComponent);
 
     await render(hbs`
       <WrapUrls
         @text="visit http://my http://link"
-        @component={{component "x-foo" target="foo"}} />
+        @component={{component "foo"}} />
     `);
 
     assert.dom(this.element).hasText('visit http://my http://link');
@@ -199,10 +199,9 @@ module('Integration | Component | wrap urls', function(hooks) {
   test('start and end properties', async function(assert) {
     assert.expect(1);
 
-    const MyLinkComponent = Component.extend({
-      classNames: ['my-link'],
-      layout: hbs`{{@start}} {{@url}} {{@end}}`
-    });
+    class MyLinkComponent extends Component {
+      layout = hbs`<div class="my-link">{{@start}} {{@url}} {{@end}}</div>`;
+    }
 
     this.owner.register('component:my-link', MyLinkComponent);
 
