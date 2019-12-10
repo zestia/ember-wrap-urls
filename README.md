@@ -28,6 +28,10 @@ This Ember addon takes some text, which may or may not contain URLs and renders 
 ember install @zestia/ember-wrap-urls
 ```
 
+## Demo
+
+https://zestia.github.io/ember-wrap-urls/
+
 ## Example
 
 Given the following:
@@ -74,18 +78,14 @@ To send in your own arguments:
 
 ## Customising
 
-Specify your own component to customise how URLs are rendered:
+Specify your own `@pattern` to use for finding hyperlinks, and your own `@component` to customise how they are rendered.
 
 ```handlebars
-<WrapUrls @text={{text}} @component={{component "my-link"}} />
+<WrapUrls
+  @text={{this.text}}
+  @pattern={{this.mailtoPattern}}
+  @component={{component "mailto"}}
+/>
 ```
 
-Then, in your component's template you will have access to `@url`, `@start`, and `@end`.
-
-You can also change the pattern used to find hyperlinks:
-
-```javascript
-import WrapUrlsComponent from '@zestia/ember-wrap-urls/components/wrap-urls';
-
-WrapUrlsComponent.pattern = /yourRegexGoesHere/g;
-```
+In your component's template you will have access to `@url`, `@start`, and `@end`.

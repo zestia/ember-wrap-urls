@@ -3,7 +3,7 @@
 ## 3.0.0
 
 - Internal refactor from Ember Object to Classes
-  The `reopenClass` approach for customising the regular expression needs to be changed (see Readme for the new way)
+- The `reopenClass` approach for customising the regular expression has been removed (see Readme for the new way)
 
 ## 2.0.2
 

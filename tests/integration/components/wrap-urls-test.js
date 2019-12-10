@@ -7,7 +7,6 @@ import { text } from 'dummy/utils/samples';
 import { helper } from '@ember/component/helper';
 import { htmlSafe } from '@ember/string';
 import Component from '@ember/component';
-import WrapUrlsComponent from '@zestia/ember-wrap-urls/components/wrap-urls';
 const { escapeExpression } = Ember.Handlebars.Utils;
 const { from } = Array;
 
@@ -163,17 +162,17 @@ module('Integration | Component | wrap urls', function(hooks) {
     assert.expect(2);
     /* eslint-disable require-atomic-updates */
 
-    const originalRegex = WrapUrlsComponent.pattern;
+    this.set('pattern', /mailto:(.*)?/g);
 
-    WrapUrlsComponent.pattern = /mailto:(.*)?/g;
-
-    await render(hbs`<WrapUrls @text="email me mailto:fred@smith.com" />`);
+    await render(hbs`
+      <WrapUrls
+        @pattern={{this.pattern}}
+        @text="email me mailto:fred@smith.com" />
+    `);
 
     assert.dom(this.element).hasText('email me mailto:fred@smith.com');
 
     assert.deepEqual(this.getText('.wrapped-url'), ['mailto:fred@smith.com']);
-
-    WrapUrlsComponent.pattern = originalRegex;
   });
 
   test('re-computing', async function(assert) {

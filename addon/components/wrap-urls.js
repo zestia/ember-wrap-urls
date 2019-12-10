@@ -2,11 +2,11 @@ import Component from '@ember/component';
 import layout from '../templates/components/wrap-urls';
 import { computed } from '@ember/object';
 
+const pattern = /(https?|file|ftp):\/\/([a-zA-Z0-9~!@#$%^&*()_\-=+/?.:;',]*)?/g;
+
 export default class WrapUrlsComponent extends Component {
   layout = layout;
   tagName = '';
-
-  static pattern = /(https?|file|ftp):\/\/([a-zA-Z0-9~!@#$%^&*()_\-=+/?.:;',]*)?/g;
 
   @computed('text')
   get parts() {
@@ -18,6 +18,11 @@ export default class WrapUrlsComponent extends Component {
     return this.component || 'wrap-urls/url';
   }
 
+  @computed('pattern')
+  get regex() {
+    return this.pattern || pattern;
+  }
+
   _textToParts(text) {
     text = text || '';
     text = text.toString();
@@ -27,7 +32,7 @@ export default class WrapUrlsComponent extends Component {
     let match;
     let string;
 
-    while ((match = WrapUrlsComponent.pattern.exec(text))) {
+    while ((match = this.regex.exec(text))) {
       const [url] = match;
       const { index: start } = match;
 
