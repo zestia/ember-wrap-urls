@@ -163,11 +163,9 @@ module('Integration | Component | wrap urls', function(hooks) {
     assert.expect(2);
     /* eslint-disable require-atomic-updates */
 
-    const originalRegex = WrapUrlsComponent.regex;
+    const originalRegex = WrapUrlsComponent.pattern;
 
-    WrapUrlsComponent.reopenClass({
-      regex: /mailto:(.*)?/g
-    });
+    WrapUrlsComponent.pattern = /mailto:(.*)?/g;
 
     await render(hbs`<WrapUrls @text="email me mailto:fred@smith.com" />`);
 
@@ -175,7 +173,7 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     assert.deepEqual(this.getText('.wrapped-url'), ['mailto:fred@smith.com']);
 
-    WrapUrlsComponent.regex = originalRegex;
+    WrapUrlsComponent.pattern = originalRegex;
   });
 
   test('re-computing', async function(assert) {

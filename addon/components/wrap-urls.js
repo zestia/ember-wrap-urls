@@ -1,17 +1,22 @@
 import Component from '@ember/component';
 import layout from '../templates/components/wrap-urls';
-import { set } from '@ember/object';
+import { computed } from '@ember/object';
 
-const WrapUrlsComponent = Component.extend({
-  layout,
-  tagName: '',
-  parts: null,
+export default class WrapUrlsComponent extends Component {
+  layout = layout;
+  tagName = '';
 
-  didReceiveAttrs() {
-    this._super(...arguments);
-    set(this, 'parts', this._textToParts(this.text));
-    set(this, 'urlComponent', this.component || 'wrap-urls/url');
-  },
+  static pattern = /(https?|file|ftp):\/\/([a-zA-Z0-9~!@#$%^&*()_\-=+/?.:;',]*)?/g;
+
+  @computed('text')
+  get parts() {
+    return this._textToParts(this.text);
+  }
+
+  @computed('component')
+  get urlComponent() {
+    return this.component || 'wrap-urls/url';
+  }
 
   _textToParts(text) {
     text = text || '';
@@ -22,7 +27,7 @@ const WrapUrlsComponent = Component.extend({
     let match;
     let string;
 
-    while ((match = WrapUrlsComponent.regex.exec(text))) {
+    while ((match = WrapUrlsComponent.pattern.exec(text))) {
       const [url] = match;
       const { index: start } = match;
 
@@ -53,10 +58,4 @@ const WrapUrlsComponent = Component.extend({
 
     return parts;
   }
-});
-
-WrapUrlsComponent.reopenClass({
-  regex: /(https?|file|ftp):\/\/([a-zA-Z0-9~!@#$%^&*()_\-=+/?.:;',]*)?/g
-});
-
-export default WrapUrlsComponent;
+}

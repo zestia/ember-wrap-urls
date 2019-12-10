@@ -87,7 +87,5 @@ You can also change the pattern used to find hyperlinks:
 ```javascript
 import WrapUrlsComponent from '@zestia/ember-wrap-urls/components/wrap-urls';
 
-WrapUrlsComponent.reopenClass({
-  regex: /yourRegexGoesHere/g
-});
+WrapUrlsComponent.pattern = /yourRegexGoesHere/g;
 ```
