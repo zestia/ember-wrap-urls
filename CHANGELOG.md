@@ -4,6 +4,7 @@
 
 - Internal refactor from Ember Object to Classes
 - The `reopenClass` approach for customising the regular expression has been removed (see Readme for the new way)
+- Drop support for < Ember 3.11
 
 ## 2.0.2
 
