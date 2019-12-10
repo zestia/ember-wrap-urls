@@ -55,7 +55,7 @@ This addon comes with two extra components:
 
 By default, URLs will be rendered using `wrap-urls/url`
 
-You can set `component` to change which component is used to render each URL:
+You can set `@component` to change which component is used to render each URL:
 
 ```handlebars
 <WrapUrls @text="Visit http://example.com" @component="wrap-urls/link" />
