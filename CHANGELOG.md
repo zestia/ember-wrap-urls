@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.1
+
+- Upgrade dependencies
+
 ## 3.0.0
 
 - Internal refactor from Ember Object to Classes
