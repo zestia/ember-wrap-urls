@@ -73,7 +73,8 @@ To send in your own arguments:
 ```handlebars
 <WrapUrls
   @text="Visit http://example.com"
-  @component={{component "wrap-urls/link" target="_blank"}} />
+  @component={{component "wrap-urls/link" target="_blank"}}
+/>
 ```
 
 ## Customising
