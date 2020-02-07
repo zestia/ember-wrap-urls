@@ -160,7 +160,6 @@ module('Integration | Component | wrap urls', function(hooks) {
 
   test('custom pattern', async function(assert) {
     assert.expect(2);
-    /* eslint-disable require-atomic-updates */
 
     this.set('pattern', /mailto:(.*)?/g);
 
