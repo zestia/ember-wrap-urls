@@ -17,7 +17,7 @@
     <img src="https://emberobserver.com/badges/-zestia-ember-wrap-urls.svg">
   </a>
 
-  <img src="https://img.shields.io/badge/Ember-%3E%3D%203.11-brightgreen">
+  <img src="https://img.shields.io/badge/Ember-%3E%3D%203.12-brightgreen">
 </p>
 
 This Ember addon takes some text, which may or may not contain URLs and renders the text and each URL as an Ember component.
