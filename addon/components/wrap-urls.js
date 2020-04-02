@@ -42,14 +42,14 @@ export default class WrapUrlsComponent extends Component {
 
       if (string) {
         parts.push({
-          text: string
+          text: string,
         });
       }
 
       parts.push({
         url,
         start,
-        end: lastIndex
+        end: lastIndex,
       });
     }
 
@@ -57,7 +57,7 @@ export default class WrapUrlsComponent extends Component {
 
     if (string) {
       parts.push({
-        text: string
+        text: string,
       });
     }
 

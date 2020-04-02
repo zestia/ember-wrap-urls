@@ -10,15 +10,15 @@ import Component from '@ember/component';
 const { escapeExpression } = Ember.Handlebars.Utils;
 const { from } = Array;
 
-module('Integration | Component | wrap urls', function(hooks) {
+module('Integration | Component | wrap urls', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
-    this.getText = selector =>
-      from(findAll(selector)).map(el => el.textContent);
+  hooks.beforeEach(function () {
+    this.getText = (selector) =>
+      from(findAll(selector)).map((el) => el.textContent);
   });
 
-  test('it renders', async function(assert) {
+  test('it renders', async function (assert) {
     assert.expect(2);
 
     await render(hbs`<WrapUrls />`);
@@ -34,7 +34,7 @@ module('Integration | Component | wrap urls', function(hooks) {
     assert.equal(this.element.innerHTML, '<!---->', 'no block mode');
   });
 
-  test('escaping', async function(assert) {
+  test('escaping', async function (assert) {
     assert.expect(1);
 
     await render(hbs`<WrapUrls @text="<script>" />`);
@@ -42,7 +42,7 @@ module('Integration | Component | wrap urls', function(hooks) {
     assert.equal(this.element.innerHTML, '&lt;script&gt;', 'text is escaped');
   });
 
-  test('null text', async function(assert) {
+  test('null text', async function (assert) {
     assert.expect(1);
 
     this.set('text', null);
@@ -52,12 +52,12 @@ module('Integration | Component | wrap urls', function(hooks) {
     assert.equal(this.element.innerHTML, '<!---->', 'does not blow up');
   });
 
-  test('safe strings', async function(assert) {
+  test('safe strings', async function (assert) {
     assert.expect(2);
 
     this.owner.register(
       'helper:truncate',
-      helper(function(args) {
+      helper(function (args) {
         const [string, length] = args;
         return htmlSafe(escapeExpression(string.slice(0, length)));
       })
@@ -72,7 +72,7 @@ module('Integration | Component | wrap urls', function(hooks) {
     assert.deepEqual(this.getText('.wrapped-url'), ['http://exa']);
   });
 
-  test('it wraps urls', async function(assert) {
+  test('it wraps urls', async function (assert) {
     assert.expect(2);
 
     this.set('text', text);
@@ -90,11 +90,11 @@ module('Integration | Component | wrap urls', function(hooks) {
       'http://foo.bar.com',
       'http://foo.com/bar/baz',
       'http://foo.com',
-      'https://bar.com'
+      'https://bar.com',
     ]);
   });
 
-  test('it wraps urls as links', async function(assert) {
+  test('it wraps urls as links', async function (assert) {
     assert.expect(2);
 
     this.set('text', text);
@@ -114,11 +114,11 @@ module('Integration | Component | wrap urls', function(hooks) {
       'http://foo.bar.com',
       'http://foo.com/bar/baz',
       'http://foo.com',
-      'https://bar.com'
+      'https://bar.com',
     ]);
   });
 
-  skip('it forwards attributes', async function(assert) {
+  skip('it forwards attributes', async function (assert) {
     assert.expect(1);
 
     // Not working due to splattributes not forwarding with component helper
@@ -134,7 +134,7 @@ module('Integration | Component | wrap urls', function(hooks) {
     assert.dom('a[target="_blank"]').exists({ count: 9 });
   });
 
-  test('custom component', async function(assert) {
+  test('custom component', async function (assert) {
     assert.expect(2);
 
     class FooComponent extends Component {
@@ -154,11 +154,11 @@ module('Integration | Component | wrap urls', function(hooks) {
 
     assert.deepEqual(this.getText('[target="foo"]'), [
       'http://my',
-      'http://link'
+      'http://link',
     ]);
   });
 
-  test('custom pattern', async function(assert) {
+  test('custom pattern', async function (assert) {
     assert.expect(2);
 
     this.set('pattern', /mailto:(.*)?/g);
@@ -174,7 +174,7 @@ module('Integration | Component | wrap urls', function(hooks) {
     assert.deepEqual(this.getText('.wrapped-url'), ['mailto:fred@smith.com']);
   });
 
-  test('re-computing', async function(assert) {
+  test('re-computing', async function (assert) {
     assert.expect(4);
 
     this.set('text', 'http://foo.com');
@@ -192,7 +192,7 @@ module('Integration | Component | wrap urls', function(hooks) {
     assert.deepEqual(this.getText('.wrapped-url'), ['http://bar.com']);
   });
 
-  test('start and end properties', async function(assert) {
+  test('start and end properties', async function (assert) {
     assert.expect(1);
 
     class MyLinkComponent extends Component {
@@ -214,7 +214,7 @@ module('Integration | Component | wrap urls', function(hooks) {
     );
   });
 
-  skip('issue: https://github.com/emberjs/ember.js/issues/17458', async function(assert) {
+  skip('issue: https://github.com/emberjs/ember.js/issues/17458', async function (assert) {
     assert.expect(0);
 
     this.set('text', 'http://emberjs.com');
