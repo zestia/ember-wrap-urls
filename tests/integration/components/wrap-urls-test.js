@@ -6,7 +6,6 @@ import hbs from 'htmlbars-inline-precompile';
 import { text } from 'dummy/utils/samples';
 import { helper } from '@ember/component/helper';
 import { htmlSafe } from '@ember/string';
-import Component from '@ember/component';
 const { escapeExpression } = Ember.Handlebars.Utils;
 const { from } = Array;
 
@@ -137,12 +136,9 @@ module('Integration | Component | wrap urls', function (hooks) {
   test('custom component', async function (assert) {
     assert.expect(2);
 
-    class FooComponent extends Component {
-      tagName = '';
-      layout = hbs`<a href={{@url}} target="foo">{{@url}}</a>`;
-    }
+    const foo = hbs`<a href={{@url}} target="foo">{{@url}}</a>`;
 
-    this.owner.register('component:foo', FooComponent);
+    this.owner.register('template:components/foo', foo);
 
     await render(hbs`
       <WrapUrls
@@ -195,11 +191,9 @@ module('Integration | Component | wrap urls', function (hooks) {
   test('start and end properties', async function (assert) {
     assert.expect(1);
 
-    class MyLinkComponent extends Component {
-      layout = hbs`<div class="my-link">{{@start}} {{@url}} {{@end}}</div>`;
-    }
+    const myLink = hbs`<div class="my-link">{{@start}} {{@url}} {{@end}}</div>`;
 
-    this.owner.register('component:my-link', MyLinkComponent);
+    this.owner.register('template:components/my-link', myLink);
 
     await render(hbs`
       <WrapUrls

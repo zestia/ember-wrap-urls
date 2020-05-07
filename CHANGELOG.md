@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.0.0
+
+- Glimmerise component
+- Drop support for Ember < 3.16
+
 ## 3.0.3
 
 - Upgrade dependencies

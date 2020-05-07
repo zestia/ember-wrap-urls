@@ -1,26 +1,20 @@
-import Component from '@ember/component';
-import layout from '../templates/components/wrap-urls';
-import { computed } from '@ember/object';
-
-const pattern = /(https?|file|ftp):\/\/([a-zA-Z0-9~!@#$%^&*()_\-=+/?.:;',]*)?/g;
+import Component from '@glimmer/component';
 
 export default class WrapUrlsComponent extends Component {
-  layout = layout;
-  tagName = '';
-
-  @computed('text')
   get parts() {
-    return this._textToParts(this.text);
+    return this._textToParts(this.args.text);
   }
 
-  @computed('component')
   get urlComponent() {
-    return this.component || 'wrap-urls/url';
+    return this.args.component || 'wrap-urls/url';
   }
 
-  @computed('pattern')
-  get regex() {
-    return this.pattern || pattern;
+  get defaultPattern() {
+    return /(https?|file|ftp):\/\/([a-zA-Z0-9~!@#$%^&*()_\-=+/?.:;',]*)?/g;
+  }
+
+  get pattern() {
+    return this.args.pattern || this.defaultPattern;
   }
 
   _textToParts(text) {
@@ -28,11 +22,13 @@ export default class WrapUrlsComponent extends Component {
     text = text.toString();
 
     const parts = [];
+    const regex = this.pattern;
+
     let lastIndex = 0;
     let match;
     let string;
 
-    while ((match = this.regex.exec(text))) {
+    while ((match = regex.exec(text))) {
       const [url] = match;
       const { index: start } = match;
 
