@@ -5,7 +5,7 @@ export default class WrapUrlsComponent extends Component {
     return this._textToParts(this.args.text);
   }
 
-  get urlComponent() {
+  get component() {
     return this.args.component || 'wrap-urls/url';
   }
 
@@ -37,24 +37,21 @@ export default class WrapUrlsComponent extends Component {
       lastIndex = start + url.length;
 
       if (string) {
-        parts.push({
-          text: string,
-        });
+        parts.push({ string });
       }
 
       parts.push({
-        url,
+        url: true,
+        string: url,
         start,
-        end: lastIndex,
+        end: lastIndex
       });
     }
 
     string = text.slice(lastIndex);
 
     if (string) {
-      parts.push({
-        text: string,
-      });
+      parts.push({ string });
     }
 
     return parts;

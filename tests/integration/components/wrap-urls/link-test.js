@@ -9,7 +9,11 @@ module('wrap-urls/link', function (hooks) {
   test('it renders', async function (assert) {
     assert.expect(4);
 
-    await render(hbs`<WrapUrls::Link @url="http://example.com" />`);
+    this.url = {
+      string: 'http://example.com'
+    };
+
+    await render(hbs`<WrapUrls::Link @url={{this.url}} />`);
 
     assert
       .dom('.wrapped-url-link')

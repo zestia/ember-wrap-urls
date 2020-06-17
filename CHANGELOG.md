@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.0
+
+- Wrap arguments up in a single argument `@url` (See readme)
+
 ## 4.0.0
 
 - Glimmerise component

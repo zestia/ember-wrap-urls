@@ -89,7 +89,7 @@ module('Integration | Component | wrap urls', function (hooks) {
       'http://foo.bar.com',
       'http://foo.com/bar/baz',
       'http://foo.com',
-      'https://bar.com',
+      'https://bar.com'
     ]);
   });
 
@@ -113,7 +113,7 @@ module('Integration | Component | wrap urls', function (hooks) {
       'http://foo.bar.com',
       'http://foo.com/bar/baz',
       'http://foo.com',
-      'https://bar.com',
+      'https://bar.com'
     ]);
   });
 
@@ -136,7 +136,7 @@ module('Integration | Component | wrap urls', function (hooks) {
   test('custom component', async function (assert) {
     assert.expect(2);
 
-    const foo = hbs`<a href={{@url}} target="foo">{{@url}}</a>`;
+    const foo = hbs`<a href={{@url.string}} target="foo">{{@url.string}}</a>`;
 
     this.owner.register('template:components/foo', foo);
 
@@ -150,7 +150,7 @@ module('Integration | Component | wrap urls', function (hooks) {
 
     assert.deepEqual(this.getText('[target="foo"]'), [
       'http://my',
-      'http://link',
+      'http://link'
     ]);
   });
 
@@ -191,7 +191,10 @@ module('Integration | Component | wrap urls', function (hooks) {
   test('start and end properties', async function (assert) {
     assert.expect(1);
 
-    const myLink = hbs`<div class="my-link">{{@start}} {{@url}} {{@end}}</div>`;
+    const myLink = hbs`
+      <div class="my-link">
+        {{~@url.start}} {{@url.string}} {{@url.end~}}
+      </div>`;
 
     this.owner.register('template:components/my-link', myLink);
 

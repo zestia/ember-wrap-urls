@@ -68,15 +68,6 @@ Visit
 <a class="wrapped-url-link" href="http://example.com">http://example.com</a>
 ```
 
-To send in your own arguments:
-
-```handlebars
-<WrapUrls
-  @text="Visit http://example.com"
-  @component={{component "wrap-urls/link" target="_blank"}}
-/>
-```
-
 ## Customising
 
 Specify your own `@pattern` to use for finding hyperlinks, and your own `@component` to customise how they are rendered.
@@ -89,4 +80,10 @@ Specify your own `@pattern` to use for finding hyperlinks, and your own `@compon
 />
 ```
 
-In your component's template you will have access to `@url`, `@start`, and `@end`.
+In your component's template you will have access to:
+
+```handlebars
+{{@url.string}}
+{{@url.start}}
+{{@url.end}}
+```
