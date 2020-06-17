@@ -64,8 +64,7 @@ You can set `@component` to change which component is used to render each URL:
 Will result in:
 
 ```html
-Visit
-<a class="wrapped-url-link" href="http://example.com">http://example.com</a>
+Visit <a class="wrapped-url-link" href="http://example.com">http://example.com</a>
 ```
 
 ## Customising
