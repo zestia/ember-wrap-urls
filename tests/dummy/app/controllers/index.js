@@ -1,12 +1,13 @@
 import Controller from '@ember/controller';
-import { set, action } from '@ember/object';
+import { action } from '@ember/object';
 import { text } from '../utils/samples';
+import { tracked } from '@glimmer/tracking';
 
 export default class Indexontroller extends Controller {
-  text = text;
+  @tracked text = text;
 
   @action
   setText({ target: { value } }) {
-    set(this, 'text', value);
+    this.text = value;
   }
 }
