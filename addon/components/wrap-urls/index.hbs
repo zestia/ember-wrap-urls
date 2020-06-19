@@ -1,7 +1,7 @@
 {{#each this.parts as |part|}}
-  {{~#if part.url~}}
+  {{~#if part.string~}}
     <this.component @url={{part}} />
   {{~else~}}
-    {{part.string}}
+    {{part}}
   {{~/if~}}
 {{/each}}

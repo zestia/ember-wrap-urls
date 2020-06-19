@@ -37,11 +37,10 @@ export default class WrapUrlsComponent extends Component {
       lastIndex = start + url.length;
 
       if (string) {
-        parts.push({ string });
+        parts.push(string);
       }
 
       parts.push({
-        url: true,
         string: url,
         start,
         end: lastIndex
@@ -51,7 +50,7 @@ export default class WrapUrlsComponent extends Component {
     string = text.slice(lastIndex);
 
     if (string) {
-      parts.push({ string });
+      parts.push(string);
     }
 
     return parts;

@@ -3,6 +3,7 @@
 ## 5.0.0
 
 - Wrap arguments up in a single argument `@url` (See readme)
+- Upgrade dependencies
 
 ## 4.0.0
 
