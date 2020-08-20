@@ -1,11 +1,10 @@
-export const text = `
-http: http://foo.com
-https: https://bar.com
-ftp: ftp://baz.com
-file: file://qux.jpg
-emoji: 🔗http://norf.com
-subdomain: http://foo.bar.com
-path: http://foo.com/bar/baz
-query: http://foo.com?bar=baz
-close together: http://foo.com https://bar.com
-`.trim();
+export const text =
+  'http: http://foo.com\n' +
+  'https: https://bar.com\n' +
+  'ftp: ftp://baz.com\n' +
+  'file: file://qux.jpg\n' +
+  'emoji: 🔗http://norf.com\n' +
+  'subdomain: http://foo.bar.com\n' +
+  'path: http://foo.com/bar/baz\n' +
+  'query: http://foo.com?bar=baz\n' +
+  'close together: http://foo.com https://bar.com';
