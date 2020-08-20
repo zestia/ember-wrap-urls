@@ -1,7 +1,1 @@
-{{#each this.parts as |part|}}
-  {{~#if part.string~}}
-    <this.component @url={{part}} />
-  {{~else~}}
-    {{part}}
-  {{~/if~}}
-{{/each}}
+{{! prettier-ignore }}{{#each this.parts as |part|}}{{#if part.string}}<this.component @url={{part}} />{{else}}{{part}}{{/if}}{{/each}}
