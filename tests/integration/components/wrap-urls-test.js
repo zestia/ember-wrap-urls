@@ -88,6 +88,7 @@ module('Integration | Component | wrap urls', function (hooks) {
       'http://norf.com',
       'http://foo.bar.com',
       'http://foo.com/bar/baz',
+      'http://foo.com?bar=baz',
       'http://foo.com',
       'https://bar.com'
     ]);
@@ -112,6 +113,7 @@ module('Integration | Component | wrap urls', function (hooks) {
       'http://norf.com',
       'http://foo.bar.com',
       'http://foo.com/bar/baz',
+      'http://foo.com?bar=baz',
       'http://foo.com',
       'https://bar.com'
     ]);
