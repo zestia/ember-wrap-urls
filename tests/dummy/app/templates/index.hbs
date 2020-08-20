@@ -1,5 +1,12 @@
-{{! prettier-ignore }}
+<textarea rows="12" cols="80" {{on "input" this.setText}}>
+  {{~this.text~}}
+</textarea>
 
-<textarea rows="12" cols="80" {{on "input" this.setText}}>{{this.text}}</textarea>
+<div class="ugc">
+  <WrapUrls
+    @text={{this.text}}
+    @component={{component "wrap-urls/link" target="_blank"}}
+  />
+</div>
 
-<div class="ugc"><WrapUrls @text={{this.text}} @component={{component "wrap-urls/link" target="_blank"}} /></div>
+{{!outlet}}
