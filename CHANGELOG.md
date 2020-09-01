@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.4
+
+- Upgrade dependencies
+
 ## 5.0.3
 
 - Use `{{~""~}}` hack to fix [issue](https://github.com/emberjs/ember.js/issues/17458) with Google Translate
