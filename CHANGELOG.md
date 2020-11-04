@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.5
+
+- Fix for forthcoming versions of Ember
+
 ## 5.0.4
 
 - Upgrade dependencies
