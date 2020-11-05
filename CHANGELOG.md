@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.6
+
+- Run ember-cli-update
+
 ## 5.0.5
 
 - [Fix build issues](https://github.com/zestia/ember-wrap-urls/pull/2) with beta and canary versions of Ember
