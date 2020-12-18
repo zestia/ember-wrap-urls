@@ -36,13 +36,13 @@ https://zestia.github.io/ember-wrap-urls/
 
 Given the following:
 
-```handlebars
+```hbs
 <WrapUrls @text="Check out my link: http://example.com" />
 ```
 
 Will render:
 
-```html
+```hbs
 Check out my link <span class="wrapped-url">http://example.com</span>
 ```
 
@@ -57,13 +57,13 @@ By default, URLs will be rendered using `wrap-urls/url`
 
 You can set `@component` to change which component is used to render each URL:
 
-```handlebars
+```hbs
 <WrapUrls @text="Visit http://example.com" @component="wrap-urls/link" />
 ```
 
 Will result in:
 
-```html
+```hbs
 Visit <a class="wrapped-url-link" href="http://example.com">http://example.com</a>
 ```
 
@@ -71,7 +71,7 @@ Visit <a class="wrapped-url-link" href="http://example.com">http://example.com</
 
 Specify your own `@pattern` to use for finding hyperlinks, and your own `@component` to customise how they are rendered.
 
-```handlebars
+```hbs
 <WrapUrls
   @text={{this.text}}
   @pattern={{this.mailtoPattern}}
@@ -81,7 +81,7 @@ Specify your own `@pattern` to use for finding hyperlinks, and your own `@compon
 
 In your component's template you will have access to:
 
-```handlebars
+```hbs
 {{@url.string}}
 {{@url.start}}
 {{@url.end}}
