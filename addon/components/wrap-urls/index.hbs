@@ -1,7 +1,7 @@
-{{#let (component this.component) as |Component|}}
+{{#let (component this.Url) as |Url|}}
   {{#each this.parts as |part|}}
     {{#if part.string}}
-      {{~""~}}<Component @url={{part}} />{{~""~}}
+      {{~""~}}<Url @url={{part}} />{{~""~}}
     {{else}}
       {{~""~}}{{part}}{{~""~}}
     {{/if}}

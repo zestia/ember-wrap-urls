@@ -1,10 +1,10 @@
 <div class="ugc">
   <WrapUrls
+    @Url={{component "wrap-urls/link" target="_blank"}}
     @text={{this.text}}
-    @component={{component "wrap-urls/link" target="_blank"}}
   />
 
-  <WrapUrls @text={{this.text}} @component="wrap-urls/url" />
+  <WrapUrls @Url={{component "wrap-urls/url"}} @text={{this.text}} />
 </div>
 
 {{!outlet}}

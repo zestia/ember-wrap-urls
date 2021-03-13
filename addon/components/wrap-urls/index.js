@@ -5,8 +5,8 @@ export default class WrapUrlsComponent extends Component {
     return this._textToParts(this.args.text);
   }
 
-  get component() {
-    return this.args.component || 'wrap-urls/url';
+  get Url() {
+    return this.args.Url ?? 'wrap-urls/url';
   }
 
   get defaultPattern() {
@@ -14,7 +14,7 @@ export default class WrapUrlsComponent extends Component {
   }
 
   get pattern() {
-    return this.args.pattern || this.defaultPattern;
+    return this.args.pattern ?? this.defaultPattern;
   }
 
   _textToParts(text) {

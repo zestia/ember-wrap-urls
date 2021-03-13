@@ -72,7 +72,7 @@ module('Integration | Component | wrap urls', function (hooks) {
     this.text = text;
 
     await render(
-      hbs`<WrapUrls @text={{this.text}} @component="wrap-urls/link" />`
+      hbs`<WrapUrls @Url={{component "wrap-urls/link"}} @text={{this.text}} />`
     );
 
     assert.equal(
@@ -117,8 +117,8 @@ module('Integration | Component | wrap urls', function (hooks) {
 
     await render(hbs`
       <WrapUrls
+        @Url={{component "wrap-urls/link" target="_blank"}}
         @text={{this.text}}
-        @component={{component "wrap-urls/link" target="_blank"}}
       />
     `);
 
@@ -134,8 +134,8 @@ module('Integration | Component | wrap urls', function (hooks) {
 
     await render(hbs`
       <WrapUrls
+        @Url={{component "foo"}}
         @text="visit http://my http://link"
-        @component={{component "foo"}}
       />
     `);
 
@@ -192,8 +192,8 @@ module('Integration | Component | wrap urls', function (hooks) {
 
     await render(hbs`
       <WrapUrls
+        @Url={{component "my-link"}}
         @text="One: http://one.com Two: http://two.com"
-        @component={{component "my-link"}}
       />
     `);
 

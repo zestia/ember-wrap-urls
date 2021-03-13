@@ -48,17 +48,20 @@ Check out my link <span class="wrapped-url">http://example.com</span>
 
 ## Built in components
 
-This addon comes with two extra components:
+This addon comes with two built in components:
 
 - `wrap-urls/url`
 - `wrap-urls/link`
 
 By default, URLs will be rendered using `wrap-urls/url`
 
-You can set `@component` to change which component is used to render each URL:
+You can set `@Url` to change which component is used to render each URL:
 
 ```hbs
-<WrapUrls @text="Visit http://example.com" @component="wrap-urls/link" />
+<WrapUrls
+  @Url={{component "wrap-urls/link"}}
+  @text="Visit http://example.com"
+/>
 ```
 
 Will result in:
@@ -69,13 +72,13 @@ Visit <a class="wrapped-url-link" href="http://example.com">http://example.com</
 
 ## Customising
 
-Specify your own `@pattern` to use for finding hyperlinks, and your own `@component` to customise how they are rendered.
+Specify your own `@pattern` to use for finding hyperlinks, and your own `@Url` to customise how they are rendered.
 
 ```hbs
 <WrapUrls
+  @Url={{component "mailto"}}
   @text={{this.text}}
   @pattern={{this.mailtoPattern}}
-  @component={{component "mailto"}}
 />
 ```
 

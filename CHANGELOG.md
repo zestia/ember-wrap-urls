@@ -1,5 +1,10 @@
 # Changelog
 
+## 6.0.0
+
+- Rename `@component` argument to `@Url`
+- Upgrade dependencies
+
 ## 5.0.7
 
 - Upgrade dependencies
