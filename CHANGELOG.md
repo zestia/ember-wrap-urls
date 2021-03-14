@@ -5,10 +5,6 @@
 - Rename `@component` argument to `@Url`
 - Upgrade dependencies
 
-## 5.0.7
-
-- Upgrade dependencies
-
 ## 5.0.6
 
 - Upgrade dependencies
