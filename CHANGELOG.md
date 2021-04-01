@@ -1,5 +1,10 @@
 # Changelog
 
+## 6.1.0
+
+- Upgrade dependencies
+- Add Embroider support
+
 ## 6.0.0
 
 - Rename `@component` argument to `@Url`
