@@ -92,19 +92,14 @@ module('Integration | Component | wrap urls', function (hooks) {
   test('safe strings', async function (assert) {
     assert.expect(1);
 
-    const truncate = helper(([string, length]) =>
-      htmlSafe(escapeExpression(string.slice(0, length)))
-    );
-
-    this.owner.register('helper:truncate', truncate);
-
-    await render(
-      hbs`<WrapUrls @text={{truncate "visit http://example.com" 16}} />`
-    );
+    await render(hbs`
+      {{! template-lint-disable no-triple-curlies }}
+      <WrapUrls @text={{{"visit https://example.com"}}} />
+    `);
 
     assert.equal(
-      this.element.innerHTML,
-      'visit <span class="wrapped-url">http://exa</span>'
+      this.element.innerHTML.trim(),
+      'visit <span class="wrapped-url">https://example.com</span>'
     );
   });
 

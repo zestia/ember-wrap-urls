@@ -1,4 +1,6 @@
 import Component from '@glimmer/component';
+import { ensureSafeComponent } from '@embroider/util';
+import Url from './url/index';
 
 export default class WrapUrlsComponent extends Component {
   get parts() {
@@ -6,7 +8,7 @@ export default class WrapUrlsComponent extends Component {
   }
 
   get Url() {
-    return this.args.Url ?? 'wrap-urls/url';
+    return ensureSafeComponent(this.args.Url ?? Url, this);
   }
 
   get defaultPattern() {
