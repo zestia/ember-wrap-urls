@@ -1,12 +1,8 @@
 import { module, test, skip } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, click, find } from '@ember/test-helpers';
-import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
 import { text } from 'dummy/utils/samples';
-import { helper } from '@ember/component/helper';
-import { htmlSafe } from '@ember/string';
-const { escapeExpression } = Ember.Handlebars.Utils;
 
 module('Integration | Component | wrap urls', function (hooks) {
   setupRenderingTest(hooks);

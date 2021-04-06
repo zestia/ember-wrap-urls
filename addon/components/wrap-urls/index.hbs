@@ -1,4 +1,4 @@
-{{#let this.Url as |Url|}}
+{{#let (ensure-safe-component this.Url) as |Url|}}
   {{#each this.parts as |part|}}
     {{#if part.string}}
       {{~""~}}<Url @url={{part}} />{{~""~}}
