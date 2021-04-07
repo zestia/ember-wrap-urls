@@ -3,6 +3,8 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, click, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { text } from 'dummy/utils/samples';
+import Component from '@glimmer/component';
+import { setComponentTemplate } from '@ember/component';
 
 module('Integration | Component | wrap urls', function (hooks) {
   setupRenderingTest(hooks);
@@ -121,11 +123,13 @@ module('Integration | Component | wrap urls', function (hooks) {
 
     const foo = hbs`<a href={{@url.string}} target="foo">{{@url.string}}</a>`;
 
-    this.owner.register('template:components/foo', foo);
+    const Foo = class extends Component {};
+
+    this.Foo = setComponentTemplate(foo, Foo);
 
     await render(hbs`
       <WrapUrls
-        @Url={{component "foo"}}
+        @Url={{this.Foo}}
         @text="visit http://my http://link"
       />
     `);
@@ -179,11 +183,13 @@ module('Integration | Component | wrap urls', function (hooks) {
 
     const myLink = hbs`<div class="my-link">{{@url.start}} {{@url.string}} {{@url.end}}</div>`;
 
-    this.owner.register('template:components/my-link', myLink);
+    const MyLink = class extends Component {};
+
+    this.MyLink = setComponentTemplate(myLink, MyLink);
 
     await render(hbs`
       <WrapUrls
-        @Url={{component "my-link"}}
+        @Url={{this.MyLink}}
         @text="One: http://one.com Two: http://two.com"
       />
     `);
