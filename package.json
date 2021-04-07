@@ -84,7 +84,8 @@
     "edition": "octane"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "demoURL": "https://zestia.github.io/ember-wrap-urls"
   },
   "bugs": {
     "url": "https://github.com/zestia/ember-wrap-urls/issues"
