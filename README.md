@@ -1,9 +1,11 @@
 # @zestia/ember-wrap-urls
 
 <p>
-  <a href="http://travis-ci.org/zestia/ember-wrap-urls">
-    <img src="https://travis-ci.org/zestia/ember-wrap-urls.svg?branch=master">
+  <!--
+  <a href="https://github.com/zestia/ember-wrap-urls/actions/workflows/ci.yml">
+    <img src="https://github.com/zestia/ember-wrap-urls/actions/workflows/ci.yml/badge.svg">
   </a>
+  -->
 
   <a href="https://david-dm.org/zestia/ember-wrap-urls#badge-embed">
     <img src="https://david-dm.org/zestia/ember-wrap-urls.svg">
