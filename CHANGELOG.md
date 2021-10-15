@@ -1,9 +1,10 @@
 # Changelog
 
-## 6.1.0 (not yet published)
+## 6.1.0
 
 - Upgrade dependencies
 - Add Embroider support
+- Correct app re-exports
 
 ## 6.0.0
 
