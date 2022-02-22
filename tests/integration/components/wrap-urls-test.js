@@ -14,7 +14,7 @@ module('Integration | Component | wrap urls', function (hooks) {
 
     await render(hbs`<WrapUrls />`);
 
-    assert.equal(
+    assert.strictEqual(
       this.element.innerHTML,
       '<!---->',
       'renders as a tagless component'
@@ -22,7 +22,7 @@ module('Integration | Component | wrap urls', function (hooks) {
 
     await render(hbs`<WrapUrls>foo</WrapUrls>`);
 
-    assert.equal(this.element.innerHTML, '<!---->', 'no block mode');
+    assert.strictEqual(this.element.innerHTML, '<!---->', 'no block mode');
   });
 
   test('escaping', async function (assert) {
@@ -30,7 +30,11 @@ module('Integration | Component | wrap urls', function (hooks) {
 
     await render(hbs`<WrapUrls @text="<script>" />`);
 
-    assert.equal(this.element.innerHTML, '&lt;script&gt;', 'text is escaped');
+    assert.strictEqual(
+      this.element.innerHTML,
+      '&lt;script&gt;',
+      'text is escaped'
+    );
   });
 
   test('null text', async function (assert) {
@@ -40,7 +44,7 @@ module('Integration | Component | wrap urls', function (hooks) {
 
     await render(hbs`<WrapUrls @text={{this.text}} />`);
 
-    assert.equal(this.element.innerHTML, '<!---->', 'does not blow up');
+    assert.strictEqual(this.element.innerHTML, '<!---->', 'does not blow up');
   });
 
   test('it wraps urls', async function (assert) {
@@ -50,7 +54,7 @@ module('Integration | Component | wrap urls', function (hooks) {
 
     await render(hbs`<WrapUrls @text={{this.text}} />`);
 
-    assert.equal(
+    assert.strictEqual(
       this.element.innerHTML,
       'http: <span class="wrapped-url">http://foo.com</span>\n' +
         'https: <span class="wrapped-url">https://bar.com</span>\n' +
@@ -73,7 +77,7 @@ module('Integration | Component | wrap urls', function (hooks) {
       hbs`<WrapUrls @Url={{component "wrap-urls/link"}} @text={{this.text}} />`
     );
 
-    assert.equal(
+    assert.strictEqual(
       this.element.innerHTML,
       'http: <a href="http://foo.com" class="wrapped-url-link">http://foo.com</a>\n' +
         'https: <a href="https://bar.com" class="wrapped-url-link">https://bar.com</a>\n' +
@@ -95,7 +99,7 @@ module('Integration | Component | wrap urls', function (hooks) {
       <WrapUrls @text={{{"visit https://example.com"}}} />
     `);
 
-    assert.equal(
+    assert.strictEqual(
       this.element.innerHTML.trim(),
       'visit <span class="wrapped-url">https://example.com</span>'
     );
@@ -134,7 +138,7 @@ module('Integration | Component | wrap urls', function (hooks) {
       />
     `);
 
-    assert.equal(
+    assert.strictEqual(
       this.element.innerHTML.trim(),
       'visit <a href="http://my" target="foo">http://my</a> <a href="http://link" target="foo">http://link</a>'
     );
@@ -152,7 +156,7 @@ module('Integration | Component | wrap urls', function (hooks) {
       />
     `);
 
-    assert.equal(
+    assert.strictEqual(
       this.element.innerHTML.trim(),
       'email me <span class="wrapped-url">mailto:fred@smith.com</span>'
     );
@@ -165,14 +169,14 @@ module('Integration | Component | wrap urls', function (hooks) {
 
     await render(hbs`<WrapUrls @text={{this.text}} />`);
 
-    assert.equal(
+    assert.strictEqual(
       this.element.innerHTML,
       '<span class="wrapped-url">http://foo.com</span>'
     );
 
     this.set('text', 'http://bar.com');
 
-    assert.equal(
+    assert.strictEqual(
       this.element.innerHTML,
       '<span class="wrapped-url">http://bar.com</span>'
     );
@@ -194,7 +198,7 @@ module('Integration | Component | wrap urls', function (hooks) {
       />
     `);
 
-    assert.equal(
+    assert.strictEqual(
       this.element.innerHTML.trim(),
       'One: <div class="my-link">5 http://one.com 19</div> Two: <div class="my-link">25 http://two.com 39</div>'
     );
