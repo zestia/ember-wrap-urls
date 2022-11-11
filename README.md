@@ -1,8 +1,9 @@
 # @zestia/ember-wrap-urls
 
 [![Latest npm release][npm-badge]][npm-badge-url]
-[![GitHub Actions][github-actions-badge]][github-actions-url]
 [![Ember Observer][ember-observer-badge]][ember-observer-url]
+
+<!-- [![GitHub Actions][github-actions-badge]][github-actions-url] -->
 
 [npm-badge]: https://img.shields.io/npm/v/@zestia/ember-wrap-urls.svg
 [npm-badge-url]: https://www.npmjs.com/package/@zestia/ember-wrap-urls
@@ -21,62 +22,48 @@ ember install @zestia/ember-wrap-urls
 
 ## Demo
 
-https://zestia.github.io/ember-wrap-urls/
+https://zestia.github.io/ember-wrap-urls
 
 ## Example
 
 Given the following:
 
 ```hbs
-<WrapUrls @text="Check out my link: http://example.com" />
+<WrapUrls @text='Check out my link: http://example.com' />
 ```
 
 Will render:
 
 ```hbs
-Check out my link <span class="wrapped-url">http://example.com</span>
+Check out my link <span class='wrapped-url'>http://example.com</span>
 ```
 
-## Built in components
+## Arguments
 
-This addon comes with two built in components:
+### `@text`
 
-- `wrap-urls/url`
-- `wrap-urls/link`
+Required. The text within which to find URLs.
 
-By default, URLs will be rendered using `wrap-urls/url`
+### `@Url`
 
-You can set `@Url` to change which component is used to render each URL:
+Optional. The component used to display each URL discovered within `@text`. Defaults to `wrap-urls/url`. You can also set it to `wrap-urls/link`, or a component of your choice.
 
-```hbs
-<WrapUrls
-  @Url={{component "wrap-urls/link"}}
-  @text="Visit http://example.com"
-/>
-```
+### `@pattern`
 
-Will result in:
+The regular expression used to find URLs in the `@text`. You may wish to set this to match mailto links for example.
 
-```hbs
-Visit <a class="wrapped-url-link" href="http://example.com">http://example.com</a>
-```
+## API
 
-## Customising
+When a URL is found, and a component is rendered in its place, that component will have this API available to it in the template:
 
-Specify your own `@pattern` to use for finding hyperlinks, and your own `@Url` to customise how they are rendered.
+### `@url.string`
 
-```hbs
-<WrapUrls
-  @Url={{component "mailto"}}
-  @text={{this.text}}
-  @pattern={{this.mailtoPattern}}
-/>
-```
+The URL that this component should render.
 
-In your component's template you will have access to:
+### `@url.start`
 
-```hbs
-{{@url.string}}
-{{@url.start}}
-{{@url.end}}
-```
+The position in the `@text` where the URL starts.
+
+### `@url.end`
+
+The position in the `@text` where the URL ends.

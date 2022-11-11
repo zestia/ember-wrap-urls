@@ -1,4 +1,4 @@
-import { module, test, skip } from 'qunit';
+import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, click, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
@@ -103,23 +103,6 @@ module('Integration | Component | wrap urls', function (hooks) {
       this.element.innerHTML.trim(),
       'visit <span class="wrapped-url">https://example.com</span>'
     );
-  });
-
-  skip('it forwards attributes', async function (assert) {
-    assert.expect(1);
-
-    // Not working due to splattributes not forwarding with component helper
-
-    this.text = text;
-
-    await render(hbs`
-      <WrapUrls
-        @Url={{component "wrap-urls/link" target="_blank"}}
-        @text={{this.text}}
-      />
-    `);
-
-    assert.dom('a[target="_blank"]').exists({ count: 9 });
   });
 
   test('custom component', async function (assert) {
