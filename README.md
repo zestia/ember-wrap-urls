@@ -38,32 +38,34 @@ Will render:
 Check out my link <span class='wrapped-url'>http://example.com</span>
 ```
 
-## Arguments
+## `WrapUrls`
 
-### `@text`
+### Arguments
+
+#### `@text`
 
 Required. The text within which to find URLs.
 
-### `@Url`
+#### `@Url`
 
 Optional. The component used to display each URL discovered within `@text`. Defaults to `wrap-urls/url`. You can also set it to `wrap-urls/link`, or a component of your choice.
 
-### `@pattern`
+#### `@pattern`
 
 The regular expression used to find URLs in the `@text`. You may wish to set this to match mailto links for example.
 
-## API
+### API
 
-When a URL is found, and a component is rendered in its place, that component will have this API available to it in the template:
+When a URL is found, and a component is rendered in its place, that component will have this API available to it in the template as an argument `@url`.
 
-### `@url.string`
+#### `string`
 
 The URL that this component should render.
 
-### `@url.start`
+#### `start`
 
 The position in the `@text` where the URL starts.
 
-### `@url.end`
+#### `end`
 
 The position in the `@text` where the URL ends.
