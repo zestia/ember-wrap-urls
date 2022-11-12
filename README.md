@@ -52,7 +52,7 @@ Optional. The component used to display each URL discovered within `@text`. Defa
 
 #### `@pattern`
 
-The regular expression used to find URLs in the `@text`. You may wish to set this to match mailto links for example.
+Optional. The regular expression used to find URLs in the `@text`. You may wish to set this to match mailto links for example.
 
 ### API
 
