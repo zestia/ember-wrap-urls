@@ -2,6 +2,15 @@
   @zestia/ember-wrap-urls
 </h1>
 
+{{!
+<p>
+  <LinkTo @route="index">Interactive</LinkTo> |
+  <LinkTo @route="test">Test</LinkTo>
+</p>
+}}
+
+{{outlet}}
+
 {{! template-lint-disable no-inline-styles }}
 <a href="https://github.com/zestia/ember-wrap-urls">
   <img
@@ -14,12 +23,3 @@
     data-recalc-dims="1"
   />
 </a>
-
-{{!
-<p>
-  <LinkTo @route="index">Interactive</LinkTo> |
-  <LinkTo @route="test">Test</LinkTo>
-</p>
-}}
-
-{{outlet}}
