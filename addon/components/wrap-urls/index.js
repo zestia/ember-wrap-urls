@@ -1,5 +1,5 @@
 import Component from '@glimmer/component';
-import Url from './url/index';
+import Url from '@zestia/ember-wrap-urls/components/wrap-urls/url/index';
 
 export default class WrapUrlsComponent extends Component {
   get parts() {

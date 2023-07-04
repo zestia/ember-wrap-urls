@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.2.0
+
+- Run `ember-cli-update`
+
 ## 6.1.0
 
 - Correct app re-exports
