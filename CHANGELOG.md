@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.2.1
+
+- Re-release of 6.2.0 but published to GH Packages instead of NPM
+
 ## 6.2.0
 
 - Run `ember-cli-update`
