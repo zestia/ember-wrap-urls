@@ -20,6 +20,13 @@ This Ember addon takes some text, which may or may not contain URLs and renders 
 ember install @zestia/ember-wrap-urls
 ```
 
+Add the following to `~/.npmrc` to pull @zestia scoped packages from Github instead of NPM.
+
+```
+@zestia:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=<YOUR_GH_TOKEN>
+```
+
 ## Demo
 
 https://zestia.github.io/ember-wrap-urls
