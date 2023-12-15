@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import Link from '@zestia/ember-wrap-urls/components/wrap-urls/link';
 
 module('wrap-urls/link', function (hooks) {
   setupRenderingTest(hooks);
@@ -9,11 +9,11 @@ module('wrap-urls/link', function (hooks) {
   test('it renders', async function (assert) {
     assert.expect(4);
 
-    this.url = {
+    const url = {
       string: 'http://example.com'
     };
 
-    await render(hbs`<WrapUrls::Link @url={{this.url}} />`);
+    await render(<template><Link @url={{url}} /></template>);
 
     assert
       .dom('.wrapped-url-link')

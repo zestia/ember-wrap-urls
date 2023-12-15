@@ -1,10 +1,19 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import {
+  render,
+  rerender,
+  getRootElement,
+  click,
+  find
+} from '@ember/test-helpers';
 import { text } from 'dummy/utils/samples';
 import Component from '@glimmer/component';
 import { setComponentTemplate } from '@ember/component';
+import WrapUrls from '@zestia/ember-wrap-urls/components/wrap-urls';
+import Link from '@zestia/ember-wrap-urls/components/wrap-urls/link';
+import { tracked } from '@glimmer/tracking';
+import { on } from '@ember/modifier';
 
 module('Integration | Component | wrap urls', function (hooks) {
   setupRenderingTest(hooks);
@@ -12,26 +21,26 @@ module('Integration | Component | wrap urls', function (hooks) {
   test('it renders', async function (assert) {
     assert.expect(2);
 
-    await render(hbs`<WrapUrls />`);
+    await render(<template><WrapUrls /></template>);
 
     assert.strictEqual(
-      this.element.innerHTML,
+      getRootElement().innerHTML,
       '<!---->',
       'renders as a tagless component'
     );
 
-    await render(hbs`<WrapUrls>foo</WrapUrls>`);
+    await render(<template><WrapUrls>foo</WrapUrls></template>);
 
-    assert.strictEqual(this.element.innerHTML, '<!---->', 'no block mode');
+    assert.strictEqual(getRootElement().innerHTML, '<!---->', 'no block mode');
   });
 
   test('escaping', async function (assert) {
     assert.expect(1);
 
-    await render(hbs`<WrapUrls @text="<script>" />`);
+    await render(<template><WrapUrls @text="<script>" /></template>);
 
     assert.strictEqual(
-      this.element.innerHTML,
+      getRootElement().innerHTML,
       '&lt;script&gt;',
       'text is escaped'
     );
@@ -40,22 +49,22 @@ module('Integration | Component | wrap urls', function (hooks) {
   test('null text', async function (assert) {
     assert.expect(1);
 
-    this.text = null;
+    await render(<template><WrapUrls @text={{null}} /></template>);
 
-    await render(hbs`<WrapUrls @text={{this.text}} />`);
-
-    assert.strictEqual(this.element.innerHTML, '<!---->', 'does not blow up');
+    assert.strictEqual(
+      getRootElement().innerHTML,
+      '<!---->',
+      'does not blow up'
+    );
   });
 
   test('it wraps urls', async function (assert) {
     assert.expect(1);
 
-    this.text = text;
-
-    await render(hbs`<WrapUrls @text={{this.text}} />`);
+    await render(<template><WrapUrls @text={{text}} /></template>);
 
     assert.strictEqual(
-      this.element.innerHTML,
+      getRootElement().innerHTML,
       'http: <span class="wrapped-url">http://foo.com</span>\n' +
         'https: <span class="wrapped-url">https://bar.com</span>\n' +
         'ftp: <span class="wrapped-url">ftp://baz.com</span>\n' +
@@ -71,14 +80,12 @@ module('Integration | Component | wrap urls', function (hooks) {
   test('it wraps urls as links', async function (assert) {
     assert.expect(1);
 
-    this.text = text;
-
-    await render(
-      hbs`<WrapUrls @Url={{component "wrap-urls/link"}} @text={{this.text}} />`
-    );
+    await render(<template>
+      <WrapUrls @Url={{Link}} @text={{text}} />
+    </template>);
 
     assert.strictEqual(
-      this.element.innerHTML,
+      getRootElement().innerHTML.trim(),
       'http: <a href="http://foo.com" class="wrapped-url-link">http://foo.com</a>\n' +
         'https: <a href="https://bar.com" class="wrapped-url-link">https://bar.com</a>\n' +
         'ftp: <a href="ftp://baz.com" class="wrapped-url-link">ftp://baz.com</a>\n' +
@@ -94,13 +101,13 @@ module('Integration | Component | wrap urls', function (hooks) {
   test('safe strings', async function (assert) {
     assert.expect(1);
 
-    await render(hbs`
+    await render(<template>
       {{! template-lint-disable no-triple-curlies }}
       <WrapUrls @text={{{"visit https://example.com"}}} />
-    `);
+    </template>);
 
     assert.strictEqual(
-      this.element.innerHTML.trim(),
+      getRootElement().innerHTML.trim(),
       'visit <span class="wrapped-url">https://example.com</span>'
     );
   });
@@ -108,21 +115,15 @@ module('Integration | Component | wrap urls', function (hooks) {
   test('custom component', async function (assert) {
     assert.expect(1);
 
-    const foo = hbs`<a href={{@url.string}} target="foo">{{@url.string}}</a>`;
+    // prettier-ignore
+    const Foo = <template><a href={{@url.string}} target="foo">{{@url.string}}</a></template>;
 
-    const Foo = class extends Component {};
-
-    this.Foo = setComponentTemplate(foo, Foo);
-
-    await render(hbs`
-      <WrapUrls
-        @Url={{this.Foo}}
-        @text="visit http://my http://link"
-      />
-    `);
+    await render(<template>
+      <WrapUrls @Url={{Foo}} @text="visit http://my http://link" />
+    </template>);
 
     assert.strictEqual(
-      this.element.innerHTML.trim(),
+      getRootElement().innerHTML.trim(),
       'visit <a href="http://my" target="foo">http://my</a> <a href="http://link" target="foo">http://link</a>'
     );
   });
@@ -130,17 +131,14 @@ module('Integration | Component | wrap urls', function (hooks) {
   test('custom pattern', async function (assert) {
     assert.expect(1);
 
-    this.pattern = /mailto:(.*)?/g;
+    const pattern = /mailto:(.*)?/g;
 
-    await render(hbs`
-      <WrapUrls
-        @pattern={{this.pattern}}
-        @text="email me mailto:fred@smith.com"
-      />
-    `);
+    await render(<template>
+      <WrapUrls @pattern={{pattern}} @text="email me mailto:fred@smith.com" />
+    </template>);
 
     assert.strictEqual(
-      this.element.innerHTML.trim(),
+      getRootElement().innerHTML.trim(),
       'email me <span class="wrapped-url">mailto:fred@smith.com</span>'
     );
   });
@@ -148,19 +146,23 @@ module('Integration | Component | wrap urls', function (hooks) {
   test('re-computing', async function (assert) {
     assert.expect(2);
 
-    this.text = 'http://foo.com';
+    const state = new (class {
+      @tracked text = 'http://foo.com';
+    })();
 
-    await render(hbs`<WrapUrls @text={{this.text}} />`);
+    await render(<template><WrapUrls @text={{state.text}} /></template>);
 
     assert.strictEqual(
-      this.element.innerHTML,
+      getRootElement().innerHTML,
       '<span class="wrapped-url">http://foo.com</span>'
     );
 
-    this.set('text', 'http://bar.com');
+    state.text = 'http://bar.com';
+
+    await rerender();
 
     assert.strictEqual(
-      this.element.innerHTML,
+      getRootElement().innerHTML,
       '<span class="wrapped-url">http://bar.com</span>'
     );
   });
@@ -168,21 +170,18 @@ module('Integration | Component | wrap urls', function (hooks) {
   test('start and end properties', async function (assert) {
     assert.expect(1);
 
-    const myLink = hbs`<div class="my-link">{{@url.start}} {{@url.string}} {{@url.end}}</div>`;
+    // prettier-ignore
+    const MyLink = <template><div class="my-link">{{@url.start}} {{@url.string}} {{@url.end}}</div></template>;
 
-    const MyLink = class extends Component {};
-
-    this.MyLink = setComponentTemplate(myLink, MyLink);
-
-    await render(hbs`
+    await render(<template>
       <WrapUrls
-        @Url={{this.MyLink}}
+        @Url={{MyLink}}
         @text="One: http://one.com Two: http://two.com"
       />
-    `);
+    </template>);
 
     assert.strictEqual(
-      this.element.innerHTML.trim(),
+      getRootElement().innerHTML.trim(),
       'One: <div class="my-link">5 http://one.com 19</div> Two: <div class="my-link">25 http://two.com 39</div>'
     );
   });
@@ -190,15 +189,17 @@ module('Integration | Component | wrap urls', function (hooks) {
   test('issue: https://github.com/emberjs/ember.js/issues/17458', async function (assert) {
     assert.expect(0);
 
-    this.text = 'http://emberjs.com';
+    const state = new (class {
+      @tracked text = 'http://emberjs.com';
+    })();
 
-    this.viewMore = () => this.set('text', 'Visit: http://emberjs.com');
+    const viewMore = () => (state.text = 'Visit: http://emberjs.com');
 
-    await render(hbs`
-      <WrapUrls @text={{this.text}} />
+    await render(<template>
+      <WrapUrls @text={{text}} />
 
-      <button type="button" {{on "click" this.viewMore}}>View more</button>
-    `);
+      <button type="button" {{on "click" viewMore}}>View more</button>
+    </template>);
 
     // Mimic what Google Translate does
     const url = find('.wrapped-url');
