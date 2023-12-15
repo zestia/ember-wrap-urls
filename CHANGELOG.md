@@ -1,5 +1,10 @@
 # Changelog
 
+## 6.2.3
+
+- Upgrade dependencies
+- Convert tests to gjs
+
 ## 6.2.2
 
 - Update `@zestia` scoped packages
