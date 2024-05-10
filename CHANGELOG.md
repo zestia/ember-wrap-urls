@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.2.4
+
+- Expose default pattern
+
 ## 6.2.3
 
 - Upgrade dependencies

@@ -1,6 +1,9 @@
 import Component from '@glimmer/component';
 import Url from '@zestia/ember-wrap-urls/components/wrap-urls/url';
 
+export const URL_PATTERN =
+  /(https?|file|ftp):\/\/([a-zA-Z0-9~!@#$%^&*()_\-=+/?.:;',]*)?/g;
+
 export default class WrapUrlsComponent extends Component {
   get parts() {
     return this._textToParts(this.args.text);
@@ -10,12 +13,8 @@ export default class WrapUrlsComponent extends Component {
     return this.args.Url ?? Url;
   }
 
-  get defaultPattern() {
-    return /(https?|file|ftp):\/\/([a-zA-Z0-9~!@#$%^&*()_\-=+/?.:;',]*)?/g;
-  }
-
   get pattern() {
-    return this.args.pattern ?? this.defaultPattern;
+    return this.args.pattern ?? URL_PATTERN;
   }
 
   _textToParts(text) {
