@@ -100,7 +100,7 @@ module('Integration | Component | wrap urls', function (hooks) {
     assert.expect(1);
 
     await render(<template>
-      {{! template-lint-disable no-triple-curlies }}
+      {{! template-lint-disable no-triple-curlies no-unnecessary-curly-strings }}
       <WrapUrls @text={{{"visit https://example.com"}}} />
     </template>);
 

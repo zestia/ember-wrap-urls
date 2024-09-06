@@ -1,5 +1,10 @@
 # Changelog
 
+## 6.2.5
+
+- Run ember-cli-update
+- Upgrade dependencies
+
 ## 6.2.4
 
 - Expose default pattern
