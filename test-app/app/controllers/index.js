@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import { text } from 'dummy/utils/samples';
+import { text } from 'test-app/utils/samples';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 

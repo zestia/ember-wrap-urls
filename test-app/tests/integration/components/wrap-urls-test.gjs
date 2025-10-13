@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'dummy/tests/helpers';
+import { setupRenderingTest } from 'test-app/tests/helpers';
 import {
   render,
   rerender,
@@ -7,7 +7,7 @@ import {
   click,
   find
 } from '@ember/test-helpers';
-import { text } from 'dummy/utils/samples';
+import { text } from 'test-app/utils/samples';
 import WrapUrls from '@zestia/ember-wrap-urls/components/wrap-urls';
 import Link from '@zestia/ember-wrap-urls/components/wrap-urls/link';
 import { tracked } from '@glimmer/tracking';

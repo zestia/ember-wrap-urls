@@ -1,0 +1,44 @@
+{
+  "author": "Zestia",
+  "dependencies": {
+    "@babel/core": "^7.25.2",
+    "@embroider/util": "^1.13.2",
+    "ember-cli-babel": "^8.2.0",
+    "ember-cli-htmlbars": "^6.3.0"
+  },
+  "description": "Automatically turns URLs into Hyperlinks for user-generated-content",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "ember": {
+    "edition": "octane"
+  },
+  "ember-addon": {
+    "demoURL": "https://zestia.github.io/ember-wrap-urls"
+  },
+  "engines": {
+    "node": ">= 18"
+  },
+  "keywords": [
+    "ember-addon",
+    "url",
+    "hyperlink",
+    "pattern",
+    "ugc",
+    "user generated content"
+  ],
+  "license": "MIT",
+  "name": "@zestia/ember-wrap-urls",
+  "peerDependencies": {
+    "ember-source": ">= 4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zestia/ember-wrap-urls.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "version": "6.2.5"
+}
