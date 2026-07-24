@@ -15,8 +15,11 @@ This Ember addon takes some text, which may or may not contain URLs and renders 
 ## Installation
 
 ```
-ember install @zestia/ember-wrap-urls
+npm install @zestia/ember-wrap-urls
 ```
+
+This is a [V2 addon](https://github.com/embroider-build/embroider/blob/main/docs/v2-faq.md) and
+requires [Embroider](https://github.com/embroider-build/embroider) or Vite.
 
 Add the following to `~/.npmrc` to pull @zestia scoped packages from Github instead of NPM.
 

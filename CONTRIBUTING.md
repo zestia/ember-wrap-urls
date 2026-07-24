@@ -11,15 +11,18 @@
 - `npm run lint`
 - `npm run lint:fix`
 
+## Building the addon
+
+- `npm run build` – Builds the addon into the `dist` directory
+
 ## Running tests
 
-- `npm run test` – Runs the test suite on the current Ember version
-- `npm run test:ember -- --server` – Runs the test suite in "watch mode"
-- `npm run test:ember-compatibility` – Runs the test suite against multiple Ember versions
+- `npm run test` – Builds the test suite and runs it in a headless browser
 
-## Running the dummy application
+## Running the demo application
 
-- `npm run start`
-- Visit the dummy application at [http://localhost:4200](http://localhost:4200).
+- `npm run start` – Serves the demo application with Vite
+- Visit the demo application at the URL printed in the terminal.
 
-For more information on using ember-cli, visit [https://cli.emberjs.com/release/](https://cli.emberjs.com/release/).
+This is a [V2 addon](https://github.com/embroider-build/embroider/blob/main/docs/v2-faq.md) built
+with [Vite](https://vite.dev) and [Rollup](https://rollupjs.org).

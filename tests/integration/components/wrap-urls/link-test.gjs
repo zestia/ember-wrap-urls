@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'dummy/tests/helpers';
+import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import Link from '@zestia/ember-wrap-urls/components/wrap-urls/link';
+import Link from '#src/components/wrap-urls/link';
 
 module('wrap-urls/link', function (hooks) {
   setupRenderingTest(hooks);

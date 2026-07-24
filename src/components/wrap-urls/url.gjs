@@ -1,0 +1,5 @@
+<template>
+  <span class="wrapped-url" ...attributes>
+    {{~@url.string~}}
+  </span>
+</template>

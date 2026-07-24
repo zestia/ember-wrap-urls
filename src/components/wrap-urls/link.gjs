@@ -1,0 +1,5 @@
+<template>
+  <a href={{@url.string}} class="wrapped-url-link" ...attributes>
+    {{~@url.string~}}
+  </a>
+</template>
