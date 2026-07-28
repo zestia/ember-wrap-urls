@@ -5,9 +5,6 @@ import { tracked } from '@glimmer/tracking';
 import { on } from '@ember/modifier';
 import Component from '@glimmer/component';
 
-// Forwards the discovered URL to the link component while adding the
-// attributes needed to open links in a new tab. Passing them here (rather than
-// currying via `{{component}}`) ensures they reach the anchor's `...attributes`.
 const NewTabLink = <template>
   <Link @url={{@url}} target="_blank" rel="noopener noreferrer" />
 </template>;
