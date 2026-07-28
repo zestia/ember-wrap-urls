@@ -3,6 +3,8 @@
 
 # compiled output
 /dist/
+/dist-demo/
+/dist-tests/
 
 # addons
 /.node_modules.ember-try/
